@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>代码设计模式之代理模式</h1>
+    <script>
+    // docment.write('胡毅辉');
+    // 对象字面量 描述功能 强大的表现力
+    // 对象由属性与方法构成
+    let hyh={
+        name: '胡毅辉',
+        gender: "man",
+        age: 21,
+        hometown: '抚州',
+        // hasGirlfriend: true
+        isSingle: false,
+        hobby: 'music',
+        //形参o
+        sendFlower(o){
+            o.receiveFlower(this)
+        }
+    }
+    let xm={
+        xq:50,
+        name:'小美',
+        age:18,
+        room:'201',
+        hometown:'赣州',
+        receiveFlower(o){         
+console.log(`${this.name}收到了${o.name}送的花`);
+if(this.xq>=90){
+    console.log('一起万达走一波')
+}else{
+    console.log('心情不太好滚一边去!')
+}
+        }
+    }
+    //代理模式
+    let xh={
+        name:'小红',
+        room:'201',
+        hometown: '抚州',
+        //接口 当不同的对象具有相同的方法时，可以互换使用
+         receiveFlower(o){ 
+//             if(o.name==='胡毅辉'){
+// console.log('让我们永远在一起叭');
+//             }else{
+                // xm.receiveFlower(o)
+//             }
+setTimeout(function(){
+                    xm.xq=95;
+                    xm.receiveFlower(o)
+                },10000)
+         }
+    }
+
+    hyh.sendFlower(xh)
+    </script>
+</body>
+</html>
