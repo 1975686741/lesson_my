@@ -1,0 +1,8 @@
+<!--写页面结构的地方-->
+<!-- view相当于div -->
+<view class="container">
+<navigator url="/pages/detail/index">
+  <text class="title">{{title}}</text>   <!-- 占位符 -->
+  </navigator>
+  <image class="car" src="{{car}}"/>
+</view>
