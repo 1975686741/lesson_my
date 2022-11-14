@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //js有强大的表现力
+        // const  定义常量 关键字，保留字   一定要给值
+        //let 定义变量  var let的区别作用域不同
+        // if (true) {
+        //     //块级作用域
+        //     var sum;   //let则不行
+        //     sum = 10;
+        //     sum++;
+        // }
+        // console.log(sum);  //全局作用域
+
+        const duck = {
+            sing() {
+                console.log('噶噶噶');
+            }
+        }
+
+        //接口  
+        const chicken = {
+            sing() {
+                console.log('噶噶噶');
+            }
+        }
+
+        const chior = [];  //合唱团
+        for (let i = 0; i < 999; i++) {
+            chior.push(duck);
+        }
+        if(typeof chicken.sing == 'function'){
+            chior.push(chicken);
+        }
+
+        if(chior.length >= 1000){
+        console.log('合唱团招募成功，去领赏吧');
+        }else{
+            console.log('继续去招募吧')
+        }
+        console.log(chior.length);
+    </script>
+</body>
+
+</html>
