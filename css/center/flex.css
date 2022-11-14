@@ -1,0 +1,10 @@
+/* flex弹性盒子模型 */
+.wp {
+    /* display: block;
+    display: inline;
+    display: inline-block; */
+    /* 新的布局可能 弹性布局 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
