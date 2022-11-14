@@ -1,3 +1,4 @@
+/* 指定元素的长度，动态计算长度值 */
 .wp {
     position: relative;
 }
@@ -5,4 +6,10 @@
     position: absolute;
     top: calc(50% - 50PX);
     left: calc(50% - 50PX);
+    /* 相当于
+     top: 50%;    
+     left: 50%;    
+    marging-top: -50px;    
+    margin-left: -50px;
+     */
 }
