@@ -49,3 +49,72 @@
     3. 高手还会把 数据请求 模块化独立于Page
         service 网络服务  新的目录  专门放网络请求
     4. 模块化  import...from
+
+- 列表数据渲染
+    1. scroll-view
+        bindscroll  回到首页
+        bindscrolltolower="loadMore"  滚到底部 加载更多
+        concat   分页  ?page=1
+        切换tab  ?type=
+
+- 小程序的架构
+    - components 组件
+        细化界面开发，复用
+    - service 跟api 接口相关
+        直接wx.request 缺点？   不易管理
+        统一管理
+
+- 接入接口
+    page home  不直接调用wx.request
+    从 service 提供   映入模块
+        import {
+         getMultiData
+        } from '../../service/home.js'
+    getMultiData  得是支持then  函数
+    函数返回值是Promise  实例就可以
+    service/home.js 向外提供 getMultiData 方法
+
+    return request({
+    url: '/home/multidata',
+     })
+
+    request 函数 必须返回Promise实例
+
+- 页面开发 新思路
+    页面不再由标签构成，而由组件构成
+    把一个页面任务，分成若干组件开发任务，
+    - 共享  多个页面 /components
+    - 不共享  只在特定的页面上出现，页面简洁，就放到page目录下
+    
+- 首页列表复杂业务梳理
+    1. 查询参数有两个
+        page
+        type
+       先测试接口
+        http://152.136.185.210:7878/api/hy66/home/data?page=${page}&type=${type}
+    2. goods 列表
+        数据驱动的列表
+    3. 默认值  type=pop  page=1
+    4.  goods: {
+        [POP]: {
+          page: 1, 
+          list: []
+        },
+        [NEW]: {
+          page: 1, 
+          list: []
+        },
+        [SELL]: {
+          page: 1, 
+          list: []
+        },
+         }
+        开始时都请求一下，这样在切换tab时，马上出来
+        getProductData(type)
+
+- w-goods  w-goods-item  组合
+    1. 页面是由组件构成的，而不是标签
+    2. 组件就负责渲染，一个业务，properties  triggerEvent
+    3. 组件有 容器组件
+        w-goods 容器组件    集合
+        w-goods-item    功能
