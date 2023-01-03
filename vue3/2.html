@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>象牙山洗脚城 Vue App 开发</title>
+    <!-- @next vue 最新版 -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <!-- 1.  挂载点 根组件挂上去 组件化思想 -->
+    <div id="app">
+        // 组件化数据驱动 进入到vue的世界
+    </div>
+
+    <script>
+        // 2.  创建Web应用  三明治
+        // 面向对象开发思想  命名空间
+        const app = Vue.createApp({
+            data() {
+                // 为什么一定是个对象
+                // data 里面用{} 组织了组件要用到的数据 数据驱动
+                // data对象 可以被监听
+                return {
+                    counter: 1,
+                    content: '欢迎您的光临，贵宾一位！',
+                    isShowMeal: false, 
+                setMeal: '真空套餐  帝王套餐  夏日套餐'
+                }
+            },
+            // 字符串模板符号，可以换行，特别适合 模板html字符串的结构表达
+            // 组件化搭建页面
+            template: `<div>
+                      <div> {{content}} </div>  <!- 模板和数据结合 ->
+                      <!-
+                      html 注释
+                    //   Vue 世界里不做DOM编程
+                    // bindtap v-on:click  v-on事件指令 DOM0 DOM2 addEventListener
+                    // VUE指令 directive
+                    // v-on 事件监听指令
+                        v- 指令的开始
+                        @click     v-on:click
+                        ->
+                        <button @click="welcomeBtnClick">有顾客来</button>&nbsp;
+                <button v-on:click="byeBtnClick">顾客离开</button>
+                <div>
+                    <div v-if="isShowMeal">{{setMeal}}</div>
+                    <button @click="showOrHideBtnClick">显示或隐藏套餐</button>
+                </div>
+            </div>
+                       `,
+            // vue 语法 事件方法
+            methods: {
+                showOrHideBtnClick() {
+                this.isShowMeal = !this.isShowMeal
+            },
+                welcomeBtnClick() {
+                    // console.log('顾客来了');
+                    // this.content = "欢迎您的光临，贵宾一位"
+                    this.$data.content= "欢迎您的光临，贵宾一位"
+                },
+                byeBtnClick() {
+                    // console.log('顾客离开');
+                    // this.content = "欢迎下次光临，下次8折哦"
+                    this.$data.content= "欢迎下次光临，下次8折哦"
+                }
+            },
+
+            mounted() {
+                console.log('应用挂载到#app节点上了,且显示了');
+                setInterval(() => {
+                    this.counter++; //修改数据
+                }, 1000)
+            }
+        })
+        const vm = app.mount('#app')  // 挂载到节点上
+        console.log(app, vm);
+    </script>
+</body>
+
+</html>
