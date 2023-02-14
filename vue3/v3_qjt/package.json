@@ -1,0 +1,19 @@
+{
+  "name": "v3_qjt",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "element3": "^0.0.40",
+    "vue": "^3.2.16",
+    "vue-router": "^4.0.13",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.9.3",
+    "vite": "^2.6.4"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "name": "小胡",
+      "age": 21,
+      "hometown": "抚州"
+    },
+    {
+      "id": "2",
+      "name": "小辉",
+      "age": 18,
+      "hometown": "东乡"
+    },
+    {
+      "name": "小毅",
+      "age": "17",
+      "hometown": "江西",
+      "id": "DKRgZF5"
+    },
+    {
+      "name": "小毅",
+      "age": "1",
+      "hometown": "11",
+      "id": "IC7PBzJ"
+    }
+  ]
+}

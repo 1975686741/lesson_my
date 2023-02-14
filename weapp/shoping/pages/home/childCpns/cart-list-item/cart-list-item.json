@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "w-check-item" : "/components/w-check-item/w-check-item"
+  }
+}
