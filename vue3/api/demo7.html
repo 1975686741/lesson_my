@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/3.0.2/vue.global.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+    // // 单向数据流
+    // const app = Vue.createApp({
+    //     data() {
+    //         return {
+    //             counter: 0
+    //         }
+    //     },
+    //     methods: {
+    //         handleAddCounter() {
+    //             this.counter += 1
+    //         }
+    //     },
+        
+    //     template: `
+    //                 <h2>JSPang.com</h2>
+    //                 <counter :counter="counter"/>  
+    //                 <counter :counter="counter" @add="handleAddCounter"/>
+    //          `
+    // })
+
+    // app.component('Counter', {
+    //     props: ['counter'],
+    //     // emits: ['add'],
+    //     methods: {
+    //         handleClick() {
+    //             this.$emit('add')
+    //         }
+    //     },
+    //     emits: {
+    //         add: (value) => {
+    //             return value < 5 ? true : false
+    //         }
+    //     },
+    //     template: `
+    //     {{counter}}
+    //     <button @click="this.counter+=1">增加数量</button>
+    //     <button @click="handleClick">增加数量</button>
+    // `
+    // })
+
+    // 
+    
+    const app = Vue.createApp({
+        template: ` 
+            <h2>欢迎光临红浪漫-请选择您的技师</h2>
+            <hong-lang-man>
+                <template v-slot:one><div>1.女宾一位，请上三楼。</div></template>
+                <template v-slot:two><div>3.顾客选择了全身SPA。</div></template>
+            </hong-lang-man>
+        `
+    })
+    app.component('HongLangMan',{
+        template:`
+            <div>
+                    <slot name="one"></slot>
+                    <div>2.你选择了大脚为你服务</div>
+                    <slot name="two"></slot>
+            </div>
+        `
+    })
+    const vm = app.mount("#app")
+    </script>
+</body>
+</html>

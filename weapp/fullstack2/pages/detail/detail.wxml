@@ -1,0 +1,7 @@
+<!--pages/detail/detail.wxml-->
+<view>
+	{{title}}  <!--  // 数据绑定 -->
+</view>
+<view>
+	{{desc}}
+</view>
