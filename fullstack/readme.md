@@ -10,6 +10,6 @@
                    2. 每次用户来都会执行
                    3. req.url  req 获得用户对象
                    4. res 服务器相应对象
-          3. 3000 listen
+          3. 3000 listen 
                 1. http:// localhost    :3000     /detail  (以下对应)
                 2. 协议 127.0.0.1 域名  接口程序   路径path   queryString

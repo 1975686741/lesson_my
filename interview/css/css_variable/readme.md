@@ -12,4 +12,4 @@
     - FORM 的新控件
         使用更丰富的表单控件， 通过type的设置， 更加方便收集用户信息
         input  type="text|number|range|color"
-    - 拖拽能力  html5 
+    - 拖拽能力  html5  
