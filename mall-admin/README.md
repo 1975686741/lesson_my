@@ -33,6 +33,6 @@
         1. / redirect
         2. 发送 302   
         3. 根据跳转去到了下一个配置 /introduce
-
+ 
 - header  + main.content 
 - 导航栏nav App.vue   + router-view 页面级别组件
