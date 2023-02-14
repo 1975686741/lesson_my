@@ -61,7 +61,7 @@
         template 编译成dom string beforeMount
         dom string -> app.mount('#app')  mounted 
     
-    - update 组件不是静态 counter 
+    - update 组件不是静态 counter  
          事件
          数据请求
          this.$data.counter 
