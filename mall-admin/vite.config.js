@@ -12,9 +12,9 @@ console.log(
 export default defineConfig({
   plugins: [vue()],
   // 路径别名
-  resolve: {
+  resolve: {  // 用来拼接路径
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': resolve(__dirname, 'src')  //  __dirname 当前文件所在的绝对路径
     }
   }
 })

@@ -1,9 +1,42 @@
 <script setup>
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { getPageTitle, getLocal } from '@/utils'
 
 const state = reactive({
   defaultOpen: ['1','2'],
-  currentPath: '/add'
+  showMenu: true,
+  currentPath: '/'
+})
+
+const router = useRouter() 
+// 使用vue-router的hooks 函数，直接拿到路由对象
+
+// router -> change to from next 
+// 路由守卫，
+// 权限分明 登录 cookie   token 更短 更安全 
+// cookie 可能被黑客截获 第三者 网络层拦截数据包 
+// HTTP请求是明文 cookie 一段文本
+// 路由的中间任何地方截获请求响应 cookie 伪装成你
+// 服务器端解析cookie  
+router.beforeEach((to, from, next) => {
+  // 根据to.name 查出标题  
+  document.title = getPageTitle(to.name)
+  state.currentPath = to.path
+  // if (to.path)
+  if (to.path == '/login') { // 如果要去到login
+    state.showMenu = false
+    next()
+  } else {
+    // 需要鉴权的页面 
+    if (to.meta.login && !getLocal('token')) {
+      next({
+        path: '/login'
+      })
+    } else {
+      next()
+    }
+  }
 })
 </script>
 
@@ -12,7 +45,7 @@ const state = reactive({
   <!-- <div>App</div> -->
   <div class="layout">
     <!-- 容器 -->
-    <el-container class="container">
+    <el-container class="container" v-if="state.showMenu">
       <!-- 侧边栏 -->
       <el-aside class="aside">
         <div class="head">
@@ -54,6 +87,9 @@ const state = reactive({
           <router-view />
         </div>
       </el-container>
+    </el-container>
+    <el-container v-else class="container">
+      <router-view/>
     </el-container>
   </div>
   
