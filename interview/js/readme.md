@@ -53,5 +53,13 @@
        es6 数组的API,  基于一个数组每一项执行一个函数,返回值组成一个新的数组,  主要用于数组的变形  
 
        1. 数组中的每一项都调用一个提供的函数,返回的结果组成新的数组
-       2. 全新的函数式编程风格, 更好理解 
+       2. 全新的函数式编程风格, 更好理解,提升了代码的可读性
        3. 原来的数组不会受到影响
+       4. 参数有三个 (item, index, array), 如果要加点佐料的话,在函数运行的时候还可以加点 this     
+         `
+                  let newNums = nums.map(function(item, index, array) {
+             // 没有return 会undefined
+              return item + index + array[index] + this.val
+               }, obj)
+         `    
+         这是我查MDN文档学习到的
