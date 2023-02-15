@@ -22,7 +22,7 @@
      3. src/main.js  作为 单点入口文件
         1. vite的特别之处 script type="module" 让js支持es6的模块化
         2. 实例化 vue  app
-        3. 并把App 组件挂载导 #app 节点上
+        3. 并把App 组件挂载到 #app 节点上
      4. 基于模块依赖，把代码组织起来
 
 - redirect 细节
