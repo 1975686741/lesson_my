@@ -66,9 +66,9 @@
 
 - VUE登录
      1. 选择何种登录方案
-         1. cookie(不安全)
-         2. jwt
-         3. tooken(主流)  服务器端签发，有效期，域名不同
+         1.   cookie(不安全)
+         2.    jwt
+         3.   tooken(主流)  服务器端签发，有效期，域名不同
          4. 前端在axios接口请求中，默认带上请求头  
              `axios.defaults.headers['token'] = getLocal('token') || ''`
      2. 使用 vue-router  在 app.vue 全局 
