@@ -103,3 +103,21 @@
                2. 读这个状态  userStore.profile
                3. 写这个状态？ userStore.profile = {.....} NO  
                4. setProfile          
+
+- el-card 组件
+    1. 当dom树加载运行到组件的时候  
+         1. 一堆html + css + js 的组合    
+         2. 停下来 解析 el-card组件
+         3. 进入组件内部  
+
+    2. header  props  直接使用
+    3. el-card 为了更好的应用
+      1. 定制
+      2. 在内部有 slot 插槽区域    允许在组件中间部分，放置到slot区域
+      3. 这个区域可能有很多个， 可以用 template + #header
+
+- 后台列表也通用开发逻辑
+    1. ElTable > ElTableColumn
+       1. thaed + tbody 循环输出
+       2. row + column
+       3. scope.row   当前这一行
