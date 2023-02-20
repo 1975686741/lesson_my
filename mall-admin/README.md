@@ -55,11 +55,12 @@
    - :rules="state.rules" 在el-form 容器组件中统一设置  
        数组  每个input 的输入规则
    - :model="state.formData" 表单就为收集数据而来    
-       `{  
-         "username": ,  
-         "password":   
-       }  
-       el-form-item props="username"
+       `
+         {  
+           "username": ,  
+           "password":   
+          }  
+          el-form-item props="username"
        `
    - ref="loginForm"  
        el-form 是组件也是对象 
