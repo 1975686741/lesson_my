@@ -13,3 +13,7 @@
     1. setup()  vue3.0 composition  api     过渡阶段的语法
     2. setup 语法糖  完全抛弃类式组件   全新阶段的语法
     3. 统一编程风格
+
+- props
+- emit
+- expose/ref    expose向外暴露 + ref 标记   父组件去调用子组件里的属性和方法

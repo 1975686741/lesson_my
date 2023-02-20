@@ -1,15 +1,10 @@
 <template>
-
-      <div>
-      </div>
-
+  <child class="child-class" style="background:green;" :msg1="msg1" :msg2="msg2" title="3333"></child> 
 </template>
-<script>
-export default {
-  props: ["msg1", "msg2"],// 如果这行不写，下面就接收不到
-  setup(props) {
-    console.log(props) // { msg1:"这是传给子组件的信息1", msg2:"这是传给子组件的信息2" }
-  },
-}
-</script>
 
+<script setup>
+import Child from './Child.vue'
+import { ref } from "vue"
+const msg1 = ref("1111")
+const msg2 = ref("2222")
+</script>
