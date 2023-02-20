@@ -17,3 +17,8 @@
 - props
 - emit
 - expose/ref    expose向外暴露 + ref 标记   父组件去调用子组件里的属性和方法
+- attrs  props之外，父组件向子组件传递的数据
+- v-model
+- provide / inject
+- localStorage
+- vuex
