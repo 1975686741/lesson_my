@@ -1,7 +1,6 @@
 <template>
     <div>
-        ShopingCart
-        {{Object.prototype.toString.call(items)}}
+        ShopingCartzzzzz
     </div>
 </template>
 
@@ -11,7 +10,7 @@ import {computed} from 'vue';
 
 const store = useStore()
 const items = computed(() => store.state.cart.items )
-console.log( store.state.cart.items );
+// console.log( store.state.cart.items );
 </script>
 
 <style  scoped>
