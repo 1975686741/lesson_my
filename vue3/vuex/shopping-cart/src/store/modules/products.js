@@ -6,7 +6,7 @@ const state = {
 
 const mutations = {
     setProducts (state, products) {
-        console.log(products, 'mutations');
+        // console.log(products, 'mutations');
         state.all = products
     },
     decrementProductInventory(state, { id }) {
