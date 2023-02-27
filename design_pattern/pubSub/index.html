@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 如何实现订阅发布模式 -->
+    <script>
+        // 楼盘 发布者
+        // 买房人 订阅者
+        const saleOffice = { // 售楼部
+            name: '汤臣一品',
+            clientList: {  // 慢慢加入订阅者
+                // '80m2': [],
+                // '120m2': []
+            } 
+        }
+        // saleOffice.listen = function(fn) {
+        //     this.clientList.push(fn)
+        // }  
+        saleOffice.listen = function(key, fn) {
+            if (!this.clientList[key]) {  // 如果没有这个分组
+                this.clientList[key] = [] // 初始化
+            }
+            this.clientList[key].push(fn)   // 订阅的分组功能
+        }
+
+        // saleOffice.trigger = function() {
+        //     for (let i=0; i < this.clientList.length; i++) {
+        //         let client = this.clientList[i];
+        //         client.apply(this, arguments)
+        //     }
+        // }
+            saleOffice.trigger = function() {
+                // 得到key，再移除，剩下的arguments就是数据
+                const key = Array.prototype.shift.call(arguments) 
+                const fns = this.clientList[key]; // 通知的分组
+                if (!fns || fns.length === 0) {  // 安全起见
+                    return false
+                }
+                for (let i=0; i< fns.length; i++) {
+                    let fn = fns[i]
+                    fn.apply(this, arguments)
+                }
+            }
+
+        // 关注楼盘 listen 监听
+        saleOffice.listen('squareMeter80', function(price, squareMeter) {
+            console.log(this.name);
+            console.log('价格=' + price );
+            console.log('平米:' + squareMeter);
+        })
+        saleOffice.listen('squareMeter80',function(price, squareMeter) {
+            console.log(this.name);
+            console.log('价格=' + price );
+            console.log('平米:' + squareMeter);
+        })
+        saleOffice.listen('squareMeter140',function(price, squareMeter) {
+            console.log(this.name);
+            console.log('价格=' + price );
+            console.log('平米:' + squareMeter);
+        })
+        saleOffice.trigger('squareMeter140', 120000,140)
+        // console.log(saleOffice.clientList);
+    </script>
+</body>
+</html>
