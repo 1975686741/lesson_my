@@ -50,3 +50,42 @@
       - dispatch
   - useStore
   - $store
+
+- 模块化的知识点
+    1. require + module.exports   commonjs    
+      node
+    2. import + export   es6  
+      一个文件就是一个模块   一个函数一个功能  
+      export default  默认输出的只能用一次  
+      export要输出多个的话，也可以
+    3. 在结构的时候，模块化语法的优先级更高 要让模块化的语法更明确  
+        一次default  n次export  
+        对 import 支持便捷  
+        import Vuex(默认),{只能用于export}
+
+
+- 手写vuex
+    1. Store 类
+          1. 返回store 单例
+          2. state() mutations
+          3. constructor options
+          4. commit方法
+          5. install
+    2. useStore
+          1. app.use()
+          2. provide store
+          3. inject
+
+- es6是js的重大更新
+    - 让js成为大型语言，适合企业级开发
+          1. 模块化
+             1. 大型项目代码很多，分工合作方便合作和管理
+          2. class  get set
+             1. 传统面向对象（原型式难理解）
+             2. 保护属性
+          3. extends 继承
+          4. let const  常量 + 块级作用域
+    - 代码更优雅简洁 
+          - {} []解构
+          - ...展开运算符
+          - for of 
