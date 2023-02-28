@@ -1,85 +1,88 @@
 <script setup>
-import { ref, onMounted, reactive } from 'vue'
-const searchWrap = ref(null)
+import { ref, onMounted, reactive } from "vue";
+const searchWrap = ref(null);
 const state = reactive({
   categoryData: [],
-  currentIndex: 15
-})
+  currentIndex: 15,
+});
 onMounted(async () => {
   let $screenHeight = document.documentElement.clientHeight;
-  console.log($screenHeight, '///')
-  searchWrap.value.style.height = $screenHeight - 100 + 'px'
-  fetch(
-    'http://backend-api-01.newbee.ltd/api/v1/categories'
-  ).then(data => data.json())
-  .then(data => {
-    // console.log(data)
-    state.categoryData = data.data
-  })
-})
+  console.log($screenHeight, "///");
+  searchWrap.value.style.height = $screenHeight - 100 + "px";
+  fetch("http://backend-api-01.newbee.ltd/api/v1/categories")
+    .then((data) => data.json())
+    .then((data) => {
+      // console.log(data)
+      state.categoryData = data.data;
+    });
+});
 
 const selectMenu = (index) => {
   // console.log(index, 'select Menu')
-  state.currentIndex = index
-}
-
+  state.currentIndex = index;
+};
 </script>
 
 <template>
-<div class="category">
-  <div>
-    <header class="category-header wrap">
-      <i class="nbicon nbfanhui"></i>
-      <div class="header-search">
-        <i class="nbicon nbSearch"></i>
-        <span class="search-title">全场50元起步</span>
-      </div>
-      <i class="nbicon nbmore"></i>
-    </header>
-    <div class="search-wrap" ref="searchWrap">
-      <div class="nav-side-wrapper">
-        <ul class="nav-side">
-          <li
-            v-for="item in state.categoryData"
-            :key="item.categoryId"
-            v-text="item.categoryName"
-            @click="selectMenu(item.categoryId)"
-            :class="{'active':state.currentIndex === item.categoryId}"
-          >
-          </li>
-        </ul>
-      </div>
-      <div class="search-content">
-        <div>
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <template v-for="(category, index) in state.categoryData">
-                <div class="swiper-slide" 
-                  v-if="state.currentIndex === category.categoryId"
-                  :key="category.categoryId">
-                  <div class="category-list"
-                   v-for="(products, index) in category.secondLevelCategoryVOS"
-                    :key="index"
+  <div class="category">
+    <div>
+      <header class="category-header wrap">
+        <i class="nbicon nbfanhui"></i>
+        <div class="header-search">
+          <i class="nbicon nbSearch"></i>
+          <span class="search-title">全场50元起步</span>
+        </div>
+        <i class="nbicon nbmore"></i>
+      </header>
+      <div class="search-wrap" ref="searchWrap">
+        <div class="nav-side-wrapper">
+          <ul class="nav-side">
+            <li
+              v-for="item in state.categoryData"
+              :key="item.categoryId"
+              v-text="item.categoryName"
+              @click="selectMenu(item.categoryId)"
+              :class="{ active: state.currentIndex === item.categoryId }"
+            ></li>
+          </ul>
+        </div>
+        <div class="search-content">
+          <div>
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                <template v-for="(category, index) in state.categoryData">
+                  <div
+                    class="swiper-slide"
+                    v-if="state.currentIndex === category.categoryId"
+                    :key="category.categoryId"
                   >
-                    <p class="category-title">{{products.categoryName}}</p>
-                    <div 
-                      class="product-item"
-                      v-for="(product, index) in products.thirdLevelCategoryVOS"
+                    <div
+                      class="category-list"
+                      v-for="(products, index) in category.secondLevelCategoryVOS"
                       :key="index"
                     >
-                      <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" class="product-img"/>
-                      <p class="product-title" v-text="product.categoryName"></p>
+                      <p class="category-title">{{ products.categoryName }}</p>
+                      <div
+                        class="product-item"
+                        v-for="(product, index) in products.thirdLevelCategoryVOS"
+                        :key="index"
+                      >
+                        <img
+                          src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png"
+                          class="product-img"
+                        />
+                        <p class="product-title" v-text="product.categoryName"></p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </template>
+                </template>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <style lang="stylus">
@@ -91,12 +94,12 @@ const selectMenu = (index) => {
   box-sizing border-box
 
 body
-  font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif 
+  font-family -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 // 模块化
 .category
   .category-header
     background-color #fff
-    position fixed 
+    position fixed
     left 0
     top 0
     fj()
@@ -104,7 +107,7 @@ body
     line-height 1.33333rem
     padding 0 .4rem
     color #656771
-    z-index 10000 
+    z-index 10000
     .icon-left
       font-size .66666rem
       font-weight bold
@@ -177,8 +180,4 @@ body
               font-size: .4rem;
               .product-img
                 wh(.8rem, .8rem)
-
-    
-    
-
 </style>
