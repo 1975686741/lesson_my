@@ -1,8 +1,8 @@
-import axios from "./config";
+import axios from './config.js' // 配置文件
 
 // 登录
-export  function login(params) {
-  return axios.post('/user/login', params)
+export function login(params) {
+   return axios.post('/user/login', params)
 }
 
 // 注册

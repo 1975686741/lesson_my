@@ -1,43 +1,43 @@
 <template>
-    <div class="product-detail">
-        <simple-header name="商品详情"></simple-header>
-        <div class="detail-content">
-            <div class="detail-swipe-wrap">
-                <van-swipe class="my-swipe" indicator="#1baeae">
-                    <van-swipe-item 
-                        v-for="(item, index) in state.detail.goodsCarouselList"
-                        :key="index"
-                    >
-                        <img v-lazy="item" alt="">
-                    </van-swipe-item>
-                </van-swipe>
-            </div>
-            <div class="product-info">
-                <div class="product-title">
-                {{state.detail.goodsName}}
-                </div>
-                <div class="product-desc">免邮费 顺丰快递</div>
-                <div class="product-price">
-                    <span>￥{{state.detail.sellingPrice}}</span>
-                </div>
-            </div>
-            <div class="product-intro">
-                <ul>
-                    <li>概述</li>
-                    <li>参数</li>
-                    <li>安装服务</li>
-                    <li>常见问题</li>
-                </ul>
-                <div class="product-content" v-html="state.detail.goodsDetailContent"></div>
-            </div>
-        </div>
-        <van-action-bar>
-            <van-action-bar-icon icon="chat-o" text="客服"></van-action-bar-icon>
-            <van-action-bar-icon icon="cart-o" text="购物车" :badge="!cart.count ? '' : cart.count"></van-action-bar-icon>
-            <van-action-bar-button type="warning" text="加入购物车"></van-action-bar-button>
-            <van-action-bar-button type="danger" text="立即购买"></van-action-bar-button>
-        </van-action-bar>
-    </div>
+  <div class="product-detail">
+      <simple-header name="商品详情"></simple-header>
+      <div class="detail-content">
+          <div class="detail-swipe-wrap">
+              <van-swipe class="my-swipe" indicator="#1baeae">
+                  <van-swipe-item 
+                      v-for="(item, index) in state.detail.goodsCarouselList"
+                      :key="index"
+                  >
+                      <img v-lazy="item" alt="">
+                  </van-swipe-item>
+              </van-swipe>
+          </div>
+          <div class="product-info">
+              <div class="product-title">
+              {{state.detail.goodsName}}
+              </div>
+              <div class="product-desc">免邮费 顺丰快递</div>
+              <div class="product-price">
+                  <span>￥{{state.detail.sellingPrice}}</span>
+              </div>
+          </div>
+          <div class="product-intro">
+              <ul>
+                  <li>概述</li>
+                  <li>参数</li>
+                  <li>安装服务</li>
+                  <li>常见问题</li>
+              </ul>
+              <div class="product-content" v-html="state.detail.goodsDetailContent"></div>
+          </div>
+      </div>
+      <van-action-bar>
+          <van-action-bar-icon icon="chat-o" text="客服"></van-action-bar-icon>
+          <van-action-bar-icon icon="cart-o" text="购物车" :badge="!cart.count ? '' : cart.count"></van-action-bar-icon>
+          <van-action-bar-button type="warning" text="加入购物车"></van-action-bar-button>
+          <van-action-bar-button type="danger" text="立即购买"></van-action-bar-button>
+      </van-action-bar>
+  </div>
 </template>
 
 <script setup>
@@ -47,26 +47,26 @@ import { getDetail } from '@/service/detail'
 import SimpleHeader from '@/components/SimpleHeader.vue'
 // router 是所有的route 集合
 import { showLoadingToast, closeToast } from 'vant'
-import { useCartStore } from '@/store/cart.js'
+import { useCartStore } from '../store/cart.js'
 
-const cart = useCartStore()
+const cart = useCartStore();
 
 const route = useRoute(); // 当前的路由
 const state = reactive({
-    detail: {},
-    loading: true
+  detail: {},
+  loading: true
 })
 
 onMounted(async () => {
-    // console.log(route);
-    const { id } = route.params 
-    showLoadingToast({
-        message: '加载中...',
-        forbidClick: true
-    })
-    const {data} = await getDetail(id) // 异步
-    state.detail = data
-    closeToast()
+  // console.log(route);
+  const { id } = route.params 
+  showLoadingToast({
+      message: '加载中...',
+      forbidClick: true
+  })
+  const {data} = await getDetail(id) // 异步
+  state.detail = data
+  closeToast()
 })
 
 </script>
@@ -120,11 +120,8 @@ onMounted(async () => {
             padding 0 .266667rem
             img
                 width 100%
-
 .van-action-bar-button--warning
-    background linear-gradient(to right, #6bd9d9, $primary)
+      background linear-gradient(to right, #6bd9d9, $primary)
 .van-action-bar-button--danger
-    background linear-gradient(to right, #0dc3c3, #098888)
-
-
+      background linear-gradient(to right, #0dc3c3, #098888)
 </style>

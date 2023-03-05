@@ -1,19 +1,19 @@
 <template>
-    <div class="category">
-        <div>
-            <header class="category-header wrap">
-                <i class="nbicon nbfanhui"></i>
-                <div class="header-search">
-                    <i class="nbicon nbSearch"></i>
-                    <router-link class="search-title" to="product-list?from=category">
-                    全场50元起步
-                    </router-link>
-                </div>
-                <i class="nbicon nbmore"></i>
-            </header>
-        </div>
-        <nav-bar/>
-    </div>
+  <div class="category">
+      <div>
+          <header class="category-header wrap">
+              <i class="nbicon nbfanhui"></i>
+              <div class="header-search">
+                  <i class="nbicon nbSearch"></i>
+                  <router-link class="search-title" to="product-list?from=category">
+                  全场50元起步
+                  </router-link>
+              </div>
+              <i class="nbicon nbmore"></i>
+          </header>
+      </div>
+      <nav-bar/>
+  </div>
 </template>
 
 <script setup>
@@ -23,16 +23,16 @@ import { showLoadingToast, closeToast } from 'vant'
 import { useRouter } from 'vue-router'
 
 const state = reactive({
-    loading: true
+  loading: true
 })
 
 const router = useRouter()
 
 onMounted(() => {
-    showLoadingToast({
-        message: '加载中'
-    })
-    closeToast()
+  showLoadingToast({
+      message: '加载中'
+  })
+  closeToast()
 })
 </script>
 

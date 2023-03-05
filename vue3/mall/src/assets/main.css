@@ -1,6 +1,6 @@
-/* // css @import 引入  css 模块化 */
+/*  css @import 引入  css 模块化 */
 @import "./base.css";
 
 #app {
-    font-weight: normal;
+   font-weight: normal;
 }

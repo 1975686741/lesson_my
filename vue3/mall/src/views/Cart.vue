@@ -1,12 +1,13 @@
 <template>
-    <div>
-        Cart
-        <nav-bar/>
-    </div>
+  <div>
+    Cart
+    <nav-bar></nav-bar>
+  </div>
 </template>
 
 <script setup>
-import NavBar from '~/NavBar.vue'
+import NavBar from '@/components/NavBar.vue'
+
 </script>
 
 <style lang="stylus" scoped>

@@ -1,11 +1,11 @@
 <template>
-    <header class="simple-header">
-        <i v-if="!noback" class="nbicon nbfanhui" @click="goBack"></i>
-        <i v-else>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
-        <div class="simple-header-name">{{ props.name }}</div>
-        <i class="nbicon nbmore"></i>
-    </header>
-    <div class="block"></div>
+  <header class="simple-header">
+      <i v-if="!noback" class="nbicon nbfanhui" @click="goBack"></i>
+      <i v-else>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</i>
+      <div class="simple-header-name">{{ props.name }}</div>
+      <i class="nbicon nbmore"></i>
+  </header>
+  <div class="block"></div>
 </template>
 
 <script setup>
@@ -13,17 +13,17 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 const props = defineProps({
-    name: {
-        type: String,
-        value: ''
-    },
-    noback: {
-        type: Boolean,
-        value: false
-    }
+  name: {
+      type: String,
+      value: ''
+  },
+  noback: {
+      type: Boolean,
+      value: false
+  }
 })
 const goBack = () => {
-    router.go(-1)
+  router.go(-1)
 }
 </script>
 
@@ -42,7 +42,8 @@ const goBack = () => {
     color #252525
     background #fff
     .simple-header-name
-        font-size .37333rem
+        fz.37333rem
 .block
-    height 1.1733rem
+    height 1.17333rem
+  
 </style>

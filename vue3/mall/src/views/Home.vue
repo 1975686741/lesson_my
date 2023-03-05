@@ -1,96 +1,94 @@
 <template>
-    <div id="home-wrapper">
-        <header class="home-header wrap" :class="{'active': state.headerScroll}">
-            <router-link to="/category">
-                <i class="nbicon nbmenu2"></i>
-            </router-link>
-            <div class="header-search">
-                <span class="app-name">新蜂商城</span>
-                <i class="nbicon nbSearch"></i>
-                <router-link 
-                    class="search-title"
-                    to="/product-list?from=home"
-                >
-                山河无恙，人间皆安
-                </router-link>
+  <div id="home-wrapper">
+      <header class="home-header wrap" :class="{'active': state.headerScroll}">
+          <router-link to="/category">
+              <i class="nbicon nbmenu2"></i>
+          </router-link>
+          <div class="header-search">
+              <span class="app-name">新蜂商城</span>
+              <i class="nbicon nbSearch"></i>
+              <router-link 
+                  class="search-title"
+                  to="/product-list?from=home"
+              >
+              山河无恙，人间皆安
+              </router-link>
+          </div>
+          <router-link class="login" to="/login">登录</router-link>
+      </header>
+      <div class="block"></div>
+      <NavBar></NavBar>
+      <swiper :list="state.swiperList"/>
+      <section class="category-list">
+        <div v-for="item in state.categoryList" :key="item.categoryId">
+            <img :src="item.imgUrl">
+            <span>{{ item.name }}</span>
+        </div>
+      </section>
+      <section class="goods">
+        <header class="goods-header">新品上线</header>
+        <van-skeleton title :row="3" :loading="state.loading">
+            <!-- slot 插槽 -->
+            <div class="goods-box">
+                <goods-item 
+                v-for="item in state.newGoodses"
+                :key="item.goodsId" 
+                @click="gotoDetail(item.goodsId)"
+                :goods="item"/>
             </div>
-            <router-link class="login" to="/login">登录</router-link>
-        </header>
-        <nav-bar />
-        <swiper :list="state.swiperList"/>  
-        <section class="category-list">
-            <div v-for="item in state.categoryList" :key="item.categoryId">
-                <img :src="item.imgUrl">
-                <span>{{item.name}}</span>
+        </van-skeleton>
+      </section>
+      <section class="goods">
+        <header class="goods-header">热销商品</header>
+        <van-skeleton title :row="3" :loading="state.loading">
+            <!-- slot 插槽 -->
+            <div class="goods-box">
+                <goods-item 
+                v-for="item in state.hotGoodses"
+                :key="item.goodsId" 
+                :goods="item"/>
             </div>
-        </section>
-        <section class="goods">
-            <header class="goods-header">新品上线</header>
-            <van-skeleton title :row="3" :loading="state.loading">
-                <!-- slot 插槽 -->
-                <div class="goods-box">
-                    <goods-item
-                        v-for="item in state.newGoodses" 
-                        :key="item.goodsId"
-                        @click="gotoDetail(item.goodsId)"
-                        :goods="item"/>
-                </div>
-            </van-skeleton>
-        </section>
-        <section class="goods">
-            <header class="goods-header">热销商品</header>
-            <van-skeleton title :row="3" :loading="state.loading">
-                <!-- slot 插槽 -->
-                <div class="goods-box">
-                    <goods-item
-                        v-for="item in state.hotGoodses" 
-                        :key="item.goodsId"
-                        @click="gotoDetail(item.goodsId)"
-                        :goods="item"/>
-                </div>
-            </van-skeleton>
-        </section>
-        <section class="goods">
-            <header class="goods-header">推荐商品</header>
-            <van-skeleton title :row="3" :loading="state.loading">
-                <!-- slot 插槽 -->
-                <div class="goods-box">
+        </van-skeleton>
+      </section>
+      <section class="goods">
+        <header class="goods-header">推荐商品</header>
+        <van-skeleton title :row="3" :loading="state.loading">
+            <!-- slot 插槽 -->
+            <div class="goods-box">
                     <goods-item
                         v-for="item in state.recommendGoodses" 
                         :key="item.goodsId"
-                        :goods="item"
-                        @click="gotoDetail(item.goodsId)"
-                        />
+                        :goods="item"/>
                 </div>
-            </van-skeleton>
-        </section>
-    </div>
+        </van-skeleton>
+      </section>
+  </div>
 </template>
 
 <script setup>
+// import SubHeader from '../components/SubHeader.vue';
 import { onMounted, reactive, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
-import { getHomeData } from '../service/home' 
+import { getHomeData } from '../service/home'
 import { showLoadingToast, closeToast } from 'vant'
-import NavBar from '~/NavBar.vue'
+import NavBar from '~/Navbar.vue'
 import swiper from '~/Swiper.vue'
 import GoodsItem from '~/GoodsItem.vue'
 import _ from 'lodash'
+// es8 异步的高级能力 async await
+// 挂载后再发送api 请求, 提升性能,  不会去争抢挂载显示
+// data 响应式的数据
+// 数据的值对应当前的组件状态
+// 值会改变 对应新的状态
+// 数据和组件的状态是一一对应关系的
 
 const router = useRouter() // 把全局的路由对象给我们
-// import SubHeader from '../components/SubHeader.vue'
-// es8  异步的高级能力 async await 
-// 挂载后再发送api 请求， 提升性能， 不会去争抢挂载显示
-// data  响应式的数据  
-// 数据的值 对应当前的组件状态
-// 值会改变 对应新的状态
-// 数据和组件的状态是一一对应关系的 
 const state = reactive({
     headerScroll: false,
     swiperList: [],
     newGoodses: [],
     hotGoodses: [],
-    recommendGoodses:[],
+    recommendGoodses: [],
     loading: true,
     categoryList: [
     {
@@ -138,64 +136,55 @@ const state = reactive({
 })
 
 const gotoDetail = (id) => {
-    // /detail/:id
-    // console.log(id, 'gotoDetail');
-    console.log(router, '///////');
-    router.push({
-        path: `/detail/${id}`
-    })
+  // /detail/:id 
+  // console.log(id, 'gotoDetail');
+  // console.log(router, '///');
+  router.push({
+      path: `/detail/${id}`
+  })
+
 }
-// console.log(document.querySelector('.category-list'), 'outerOnMounted');
+
 onMounted(async () => { // 使用了异步同步化的高级技巧
-    console.log('onMounted')
     showLoadingToast({
         message: '加载中...',
         forbidClick: true
     })
     // 后台接口数据
-    const { data } = await getHomeData() //  await  promise  api serverice
-    console.log(data, '////')
-    // console.log(data)
-    state.swiperList = data.carousels
-    state.newGoodses = data.newGoodses
-    // console.log(document.querySelector('.goods-box'), 'onMounted');
-    // nextTick(() => {
-    //     console.log(document.querySelector('.goods-box'), 'nextTicked');
-    // })
-    state.hotGoodses = data.hotGoodses
-    state.recommendGoodses = data.recommendGoodses
-    
-    state.loading = false
-    closeToast()
-    // console.log(state.swiperList)
+    const { data } = await getHomeData() // await promise  api serverice
+    // console.log(data);
+    state.swiperList = data.carousels;
+    state.newGoodses = data.newGoodses;
+    state.hotGoodses = data.hotGoodses;
+    state.recommendGoodses = data.recommendGoodses;
+    state.loading = false;
+    closeToast();
+    // console.log(state.swiperList);
 })
-// state 响应式 
-// onMounted， await  getHomeData   
-// satate.loading = false
-// 热更新 耗时的  dom 更新
-// 什么时候快递到了， 热更新已经完成了 
+// state响应式
+// onMounted, await  getHomeData
+// state.loading = false
+// 热更新 耗时的 dom 更新
+// 什么时候快递到了, 热更新已经完成了 
 nextTick(() => {
-    // 组件挂载了， 且数据绑定模板 已到位
-    // console.log('nextTick----------')
-
-    const setHeaderScroll = () => {
-        // console.log('scroll~~~~')
-        // 滚动的距离
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop 
-            || document.body.scrollTop 
-        // console.log(scrollTop)
-        scrollTop > 100 ? state.headerScroll = true : state.headerScroll = false;
-    }
-    window.addEventListener('scroll', _.throttle(setHeaderScroll, 200))
+  // 组件挂载了,  且数据绑定模板 已到位
+  const setHeaderScroll = () => {
+    let scrollTop = window.pageYOffset || document.documentElement || document.body.scrollTop 
+      // console.log(scrollTop);
+      scrollTop > 100 ? state.headerScroll = true : state.headerScroll = false
+  }
+  window.addEventListener('scroll', _.throttle(setHeaderScroll, 200))
 })
 </script>
 
 <style lang="stylus" scoped>
 @import '../common/style/mixin'
 // 可以一次性设置widht height 的mixin 混合
-// stylus 提供的tab 缩进 css 提供了模块化的能力？ 
+// stylus 提供的tab 缩进 css 提供了模块化的能力？  
 #home-wrapper
-    padding-bottom 2rem 
+    padding-bottom 2rem
+.block
+    height 1.33333rem
 .home-header
     position fixed
     top 0
@@ -205,6 +194,7 @@ nextTick(() => {
     font-size 0.4rem
     color #fff
     z-index 10000
+    opacity 1
     wh(100%, 1.33333rem)
     fj()
     .nbmenu2
@@ -269,4 +259,5 @@ nextTick(() => {
     .goods-box
         fj(flex-start)
         flex-wrap wrap
-</style>        
+       
+</style>

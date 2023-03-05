@@ -91,12 +91,8 @@ const onSubmit = async (values) => {
       "passwordMd5": md5(values.password)
     })
     console.log(data);
-
-
-    // 重要 令牌环 token
-    localStorage.setItem('token', data.data)  // 登录之后服务器会返回令牌环
+    localStorage.setItem('token', data.data) //  服务器会返回令牌环 
     window.location.href = '/'
-
   } else {
     const data = await register({
       "loginName": values.username1,

@@ -11,7 +11,7 @@ export const useCartStore = defineStore('cart', () => {
       }, 2000)
     })
     await p
-    count.value++
+    // count.value++
   }
   return {
     count,

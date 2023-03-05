@@ -1,15 +1,15 @@
 <template>
-    <div class="home-header">
+  <div class="home-header">
 
-    </div>
+  </div>
 </template>
 
 <script setup>
 
 </script>
 
-<style scoped>
+<style lang="stylus" scoped>
 .home-header {
-    background-color: green;
+  background-color: green;
 }
 </style>
