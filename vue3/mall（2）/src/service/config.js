@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://www.fastmock.site/mock/995214af813bc47208cf2fcb558907e6/mall'
+axios.defaults.baseURL = 'https://www.fastmock.site/mock/88981878c98020caf347cfd2373e0a28/mail'
 
 export default axios
