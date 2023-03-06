@@ -18,9 +18,11 @@ const props = defineProps({
 
 <style lang="stylus" scoped>
 .my-swipe
-    width 100%
+    width 50%
+    height 100%
     img
         width 100%
-        height 10%
+        height 100%
         display block
+        border-radius 10%
 </style>

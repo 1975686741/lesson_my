@@ -2,19 +2,19 @@
     <div class="navbar">
         <ul class="nav-list">
             <router-link class="nav-list-item" to="home">
-                <i class="nbicon nblvsefenkaicankaoxianban-1"></i>
+                <van-icon name="wap-home-o" />
                 <div>首页</div>
             </router-link>
             <router-link class="nav-list-item" to="category">
-                <i class="nbicon nbfenlei"></i>
+                <van-icon name="wap-nav" />
                 <div>分类</div>
             </router-link>
             <router-link class="nav-list-item" to="cart">
-                <i class="nbicon nbgouwuche"></i>
+                <van-icon name="cart-o" />
                 <div>购物车</div>
             </router-link>
             <router-link class="nav-list-item" to="user">
-                <i class="nbicon nblvsefenkaicankaoxianban-"></i>
+                <van-icon name="manager-o" />
                 <div>我的</div>
             </router-link>
         </ul>

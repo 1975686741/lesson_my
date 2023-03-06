@@ -1,6 +1,6 @@
 <template>
     <div>
-        Category
+        分类
         <nav-bar/>
     </div>
 </template>
