@@ -10,6 +10,9 @@ export default defineConfig({
   plugins: [vue()],
   // 路径字符串 resolve？ 解析有效的路径 文件系统是否有这个文件 
   // vite 介入路径功能 新的能量
+  server: {
+    port: 1111
+  },
   resolve: {
     // 短路径 别名 快捷方式
     alias: {
