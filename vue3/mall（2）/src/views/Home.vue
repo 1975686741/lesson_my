@@ -142,7 +142,12 @@
           </div>
         </div>
       </van-skeleton>
+      <router-link tag="span" class="good-footer" to="category"
+          >更多</router-link
+        >
     </section>
+
+
   <back-top :showHeight="showHeight">
     <div class="toTop">
       <van-icon  name="arrow-up" ></van-icon>
@@ -174,7 +179,7 @@ onMounted(() => {
 // 数据的值 对应当前的组件状态
 // 值会改变 对应新的状态
 // 数据和组件的状态是一一对应关系的
-const time = ref(2 * 30 * 30 * 1000);
+const time = ref(2 * 20 * 30 * 1000);
 const state = reactive({
   swiperList: [],
   newGoodses: [],
@@ -465,14 +470,13 @@ onMounted(async () => {
             wh(.96rem, .96rem)
             margin .346667rem auto .213333rem auto
 .goods {
-    .good-header {
-      background: #f9f9f9;
-      height: 50px;
-      line-height: 50px;
+    .good-footer {
+      background: $primary
       text-align: center;
-      color: $primary;
+      color: white;
       font-size: 15px;
       font-weight: 500;
+      border-radius 30%
     }
     .good-box {
       display: flex;
@@ -503,16 +507,15 @@ onMounted(async () => {
             color: $primary;
             float: left;
             flex 1
-            height 1.4rem /* 22.4/16 */
           }
           .peo {
             text-align center
             width 86%
-            height 1.4rem
             color: gray;
             font-size: 12px;
             transform : scale(0.85,0.85);
             *font-size: 10px;
+            margin-top: .07rem
           }
 
         }
@@ -523,7 +526,6 @@ onMounted(async () => {
       }
     }
   }
-
 
   .toTop
     width 1rem
