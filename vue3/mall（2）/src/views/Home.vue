@@ -99,7 +99,20 @@
       </div>
     </div>
     <section class="goods">
-      <header class="good-header">新品上线</header>
+      <van-skeleton title :row="3" :loading="state.loading">
+        <div class="good-box">
+          <div class="good-item" v-for="item in state.hotGoodses" :key="item.goodsId" @click="goToDetail(item)">
+            <img  v-lazy="item.goodsCoverImg" alt="">
+            <div class="good-desc">
+              <div class="title">{{ item.goodsName }}</div>
+              <div class="price">¥ {{ item.sellingPrice }}</div>
+              <div class="peo">{{ item.peo }}+人付款</div>
+            </div>
+          </div>
+        </div>
+      </van-skeleton>
+    </section>
+    <section class="goods">
       <van-skeleton title :row="3" :loading="state.loading">
         <!-- 插槽 -->
         <div class="good-box">
@@ -110,27 +123,13 @@
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
               <div class="price">¥ {{ item.sellingPrice }}</div>
-            </div>
-          </div>
-        </div>
-      </van-skeleton>
-    </section>
-    <section class="goods">
-      <header class="good-header">热门商品</header>
-      <van-skeleton title :row="3" :loading="state.loading">
-        <div class="good-box">
-          <div class="good-item" v-for="item in state.hotGoodses" :key="item.goodsId" @click="goToDetail(item)">
-            <img  v-lazy="item.goodsCoverImg" alt="">
-            <div class="good-desc">
-              <div class="title">{{ item.goodsName }}</div>
-              <div class="price">¥ {{ item.sellingPrice }}</div>
+              <div class="peo">{{ item.peo }}+人付款</div>
             </div>
           </div>
         </div>
       </van-skeleton>
     </section>
     <section class="goods" :style="{ paddingBottom: '100px'}">
-      <header class="good-header">最新推荐</header>
       <van-skeleton title :row="3" :loading="state.loading">
         <div class="good-box">
           <div class="good-item" v-for="item in state.recommendGoodses" :key="item.goodsId" @click="goToDetail(item)">
@@ -138,6 +137,7 @@
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
               <div class="price">¥ {{ item.sellingPrice }}</div>
+              <div class="peo">{{ item.peo }}+人付款</div>
             </div>
           </div>
         </div>
@@ -471,7 +471,7 @@ onMounted(async () => {
       line-height: 50px;
       text-align: center;
       color: $primary;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 500;
     }
     .good-box {
@@ -480,8 +480,12 @@ onMounted(async () => {
       flex-wrap: wrap;
       .good-item {
         box-sizing: border-box;
-        width: 50%;
-        border-bottom: 1PX solid #e9e9e9;
+        height: calc(100%/2 - 1rem)
+        width: 46%;
+        margin .2rem .2rem
+        background: #fff6f6
+        border-radius 7%
+        border-bottom: 2PX solid #e9e9e9;
         padding: 10px 10px;
         img {
           display: block;
@@ -497,7 +501,20 @@ onMounted(async () => {
           }
           .price {
             color: $primary;
+            float: left;
+            flex 1
+            height 1.4rem /* 22.4/16 */
           }
+          .peo {
+            text-align center
+            width 86%
+            height 1.4rem
+            color: gray;
+            font-size: 12px;
+            transform : scale(0.85,0.85);
+            *font-size: 10px;
+          }
+
         }
           // 奇数个
         &:nth-child(2n + 1) {
