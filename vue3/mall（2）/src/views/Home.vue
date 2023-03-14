@@ -1,22 +1,6 @@
 <template>
   <div id="home-wrapper">
-    <div class="home-header wrap">
-      <div class="header-search">
-        <!-- 搜索 -->
-        <van-icon class="search" name="search" />
-        <router-link class="search-title" to="/product-list?from=home">
-          输入你想搜索的商品
-        </router-link>
-        <div class="tsearch"><p color="#fff">搜索</p></div>
-      </div>
-      <router-link to="/category">
-        <!-- 分类 -->
-        <van-icon class="nbmenu2" name="wap-nav" />
-      </router-link>
-      <router-link class="login" to="/login">
-        <van-icon name="cart-o" />
-      </router-link>
-    </div>
+    <SubHeader />
     <nav-bar />
     <div class="banners">
       <swiper class="banner1" :list="state.swiperList"> </swiper>
@@ -101,7 +85,13 @@
     <section class="goods">
       <van-skeleton title :row="3" :loading="state.loading">
         <div class="good-box">
-          <div class="good-item" v-for="item in state.hotGoodses" :key="item.goodsId" @click="goToDetail(item)">
+          <div 
+          class="good-item" 
+          v-for="item in state.hotGoodses" 
+          :key="item.goodsId" 
+          @click="goToDetail(item.goodsId)"
+          :goods="item"
+          >
             <img  v-lazy="item.goodsCoverImg" alt="">
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
@@ -116,7 +106,13 @@
       <van-skeleton title :row="3" :loading="state.loading">
         <!-- 插槽 -->
         <div class="good-box">
-          <div class="good-item" v-for="item in state.newGoodses" :key="item.goodsId" @click="goToDetail(item)">
+          <div 
+          class="good-item" 
+          v-for="item in state.newGoodses" 
+          :key="item.goodsId" 
+          @click="goToDetail(item.goodsId)"
+          :goods="item"
+          >
                     <!-- 过滤器 -->
                   <!-- <img :src="$filters.prefix(item.goodsCoverImg)" alt="" />   -->
             <img v-lazy="item.goodsCoverImg" alt="">
@@ -132,7 +128,13 @@
     <section class="goods" :style="{ paddingBottom: '100px'}">
       <van-skeleton title :row="3" :loading="state.loading">
         <div class="good-box">
-          <div class="good-item" v-for="item in state.recommendGoodses" :key="item.goodsId" @click="goToDetail(item)">
+          <div 
+            class="good-item" 
+            v-for="item in state.recommendGoodses" 
+            :key="item.goodsId"
+             @click="goToDetail(item.goodsId)"
+             :goods="item"
+          >
             <img  v-lazy="item.goodsCoverImg" alt="">
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
@@ -161,15 +163,28 @@
 
 <script setup>
 
-import { ref, onMounted, reactive } from "vue";
+import { ref, onMounted, reactive, onActivated } from "vue";
+import { onBeforeRouteLeave, useRouter } from 'vue-router';
 import { getHomeData } from "../service/home";
 import { showLoadingToast, closeToast } from "vant";
 import NavBar from "~/NavBar.vue";
 import swiper from "~/Swiper.vue";
 import BackTop from '~/BackTop.vue'
+import SubHeader from '~/SubHeader.vue'
 
+// 定位到上次浏览位置
+onActivated(() => {
+    if (localStorage.getItem('scroll')) {
+        window.scrollTo(0, parseInt(localStorage.getItem('scroll')))
+    }
+})
+onBeforeRouteLeave(() => {
+    // console.log(document.documentElement.scrollTop, '记录');
+    localStorage.setItem('scroll', document.documentElement.scrollTop)
+})
 
 const showHeight = ref(0)
+
 onMounted(() => {
   showHeight.value = window.innerHeight
 })
@@ -250,13 +265,20 @@ const state = reactive({
     },
   ],
 });
+// 把全局的路由对象给我们
+const router = useRouter()
+const goToDetail = (id) => {
+  router.push({
+    path: `/detail/${id}`
+  })
+}
 
 onMounted(async () => {
   // 使用了异步同步化的高级技巧
-  showLoadingToast({
-    message: "加载中...",
-    forbidClick: true,
-  });
+  // showLoadingToast({
+  //   message: "加载中...",
+  //   forbidClick: true,
+  // });
   // 后台接口数据
   const { data } = await getHomeData(); //  await  promise  api serverice
   state.swiperList = data.carousels;
@@ -275,60 +297,7 @@ onMounted(async () => {
 @import '../common/style/mixin'
 // 可以一次性设置widht height 的mixin 混合
 // stylus 提供的tab 缩进 css 提供了模块化的能力？
-.home-header
-    top 0
-    left 0
-    line-height 1.33333rem
-    padding 0 .4rem
-    font-size 0.4rem
-    z-index 9999
-    wh(100%, 1.33333rem)
-    fj()
-    .nbmenu2
-        color $primary
-    .header-search
-        display flex
-        width 79%
-        box-sizing content-box
-        height 0.53333rem
-        line-height 0.53333rem
-        margin 0.26667rem 0
-        padding 0.1333rem 0
-        color #232326
-        border-radius .53333rem
-        background  #EBF6FA
-        .search
-           margin-left 0.23rem
-           margin-top 0.1rem
-        .tsearch
-          font-size .35rem
-          text-align center
-          width 1.1rem
-          border-radius 40%
-          background $primary
-          margin-left: auto
-          p
-            color #fff
-            font-weight 0.001
-        .app-name
-            padding 0 0.26667rem
-            color $primary
-            font-size 0.53333rem
-            font-weight bold
-            border-right .026667rem solid #666
-        .icon-search
-            // padding 0 .26667rem
-            font-size .45333rem
-            // padding-left  0.4rem
-        .search-title
-            color #fff
-            font-size .32rem
-            color #666
-            line-height 0.56rem
-            padding-left  0.2rem
-    .login
-        color $primary
-        line-height 1.38667rem
+
 .four
   padding-top: 0.2rem
   height 2rem

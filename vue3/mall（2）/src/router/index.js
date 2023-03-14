@@ -16,7 +16,10 @@ const router = createRouter({
         {
             path: '/home',
             name: 'home',
-            component: Home
+            component: Home,
+            meta: {
+                keepAlive: true,          
+            }
         },
         {
             path: '/category',
@@ -37,6 +40,12 @@ const router = createRouter({
             path: '/user',
             name: 'user',
             component: () => import('@/views/User.vue')
+        },
+        {
+            // 动态路由
+            path: '/detail/:id',
+            name: 'detail',
+            component: () => import('@/views/Detail.vue')
         }
     ]
 })
