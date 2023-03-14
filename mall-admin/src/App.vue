@@ -1,40 +1,41 @@
 <script setup>
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { getPageTitle, getLocal, setLocal } from '@/utils'
-import {  getUserProfile } from '@/service/user.js'
-import { useUserStore } from '@/store/user.js' // 直达
+import { getPageTitle, getLocal, setLocal } from '@/utils/index.js'
+import { getUserProfile } from '@/service/user.js'
+import { useUserStore } from '@/store/user.js'
 
 const userStore = useUserStore(); // 连上了
 
 const state = reactive({
-  defaultOpen: ['1','2'],
+  defaultOpen: ['1', '2', '3'],
   showMenu: true,
-  currentPath: '/',
+  currentPath: '/category',
 
 })
 
-const router = useRouter() 
-// 使用vue-router的hooks 函数，直接拿到路由对象
+// router -> change to from next
+// 路由守卫
+// 权限分明 登录 cookie   token 更短 更安全
+// cookie 可能被黑客截获 第三者 网络层拦截数据包
+// HTTP请求是明文 cookie 一段文字
+// 路上的中间任何地方截获请求响应 cookie 伪装成你
+// 服务器端解析cookie
 
-// router -> change to from next 
-// 路由守卫，
-// 权限分明 登录 cookie   token 更短 更安全 
-// cookie 可能被黑客截获 第三者 网络层拦截数据包 
-// HTTP请求是明文 cookie 一段文本
-// 路由的中间任何地方截获请求响应 cookie 伪装成你
-// 服务器端解析cookie  
+const router = useRouter();
+// 使用vue-router hooks函数, 直接拿到路由对象
+
 router.beforeEach((to, from, next) => {
-  // 根据to.name 查出标题  
-  document.title = getPageTitle(to.name)
+  // 根据to.name 查出标题
+  document.title = getPageTitle(to.name);
   state.currentPath = to.path
-  // if (to.path)
-  if (to.path == '/login') { // 如果要去到login
+  // 
+  if (to.path === '/login') {
     state.showMenu = false
     next()
   } else {
-    // 需要鉴权的页面 
-    console.log(getLocal('token'), '-------------');
+    // 需要鉴权的页面
+    // console.log(getLocal('token'),'------');
     if (to.meta.login && !getLocal('token')) {
       next({
         path: '/login'
@@ -47,15 +48,14 @@ router.beforeEach((to, from, next) => {
 
 onMounted(async () => {
   // const userInfo = getLocal('profile') || '';
-  // console.log(userInfo.loginUserName, '/////');
+  // console.log(userInfo,'///');
   // if (!userInfo) {
   //   const { data } = await getUserProfile()
-  //   // console.log(userInfo, 'profile')
+  //   // console.log(userInfo, '///////');
   //   setLocal('profile', data)
   // }
   const { data } = await getUserProfile()
   userStore.setProfile(data)
-  
 })
 </script>
 
@@ -72,15 +72,10 @@ onMounted(async () => {
             <img src="" alt="logo">
             <span>vue3 admin</span>
           </div>
-        </div>  
+        </div>
         <div class="line"></div>
-        <el-menu
-          background-color="#222832"
-          text-color="#fff"
-          :router="true"
-          :default-openeds="state.defaultOpen"
-          :default-active="state.currentPath"
-        >
+        <el-menu background-color="#222832" text-color="#fff" :router="true" :default-openeds="state.defaultOpen"
+          :default-active="state.currentPath">
           <el-sub-menu index="1">
             <template #title>
               <span>Dashboard</span>
@@ -94,13 +89,25 @@ onMounted(async () => {
             <template #title>
               <span>首页配置</span>
             </template>
+
             <el-menu-item-group>
               <el-menu-item index="/swiper">轮播图配置</el-menu-item>
               <el-menu-item index="/hot">热销商品配置</el-menu-item>
             </el-menu-item-group>
           </el-sub-menu>
+          <el-sub-menu index="3">
+            <template #title>
+              <span>模块管理</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/category">
+                <el-icon><Menu/></el-icon>
+                分类管理
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-sub-menu>
         </el-menu>
-      </el-aside> 
+      </el-aside>
       <el-container class="content">
         <div class="main">
           <router-view />
@@ -108,10 +115,9 @@ onMounted(async () => {
       </el-container>
     </el-container>
     <el-container v-else class="container">
-      <router-view/>
+      <router-view></router-view>
     </el-container>
   </div>
-  
 </template>
 
 <style lang="stylus">

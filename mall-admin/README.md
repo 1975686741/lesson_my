@@ -122,3 +122,12 @@
        1. thaed + tbody 循环输出
        2. row + column
        3. scope.row   当前这一行
+
+- element-plus 将图标库分离
+    - @element-plus/icons-vue
+    - 图标库自定义
+
+- 新手在做前端通信的难点
+    - /category 列表请求路径
+    - 参数复杂？分页参数 
+
