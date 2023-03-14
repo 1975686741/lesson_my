@@ -1,0 +1,6 @@
+{
+    // 把js文件预处理一下
+    "presets": [
+        "@babel/preset-env"
+    ]
+}

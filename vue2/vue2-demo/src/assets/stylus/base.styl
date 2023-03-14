@@ -1,0 +1,35 @@
+*
+  margin 0
+  padding 0
+
+a
+  text-decoration none
+  
+body, html
+  line-height: 1
+  font-weight: 200
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif
+
+.clearfix
+  display: inline-block
+  &:after
+    display: block
+    content: "."
+    height: 0
+    line-height: 0
+    clear: both
+    visibility: hidden
+
+// 媒体选择器，不同设备屏幕适配
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)  // 像素密度比兼容 像素密度比
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)
+
+
+@media (-webkit-min-device-pixel-ratio: 3),(min-device-pixel-ratio: 3)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.333333)
+      transform: scaleY(0.333333)
