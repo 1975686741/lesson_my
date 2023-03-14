@@ -105,8 +105,8 @@
             <img  v-lazy="item.goodsCoverImg" alt="">
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
-              <div class="price">¥ {{ item.sellingPrice }}</div>
-              <div class="peo">{{ item.peo }}+人付款</div>
+                <div class="price">¥ {{ item.sellingPrice }}</div>
+                <div class="peo">{{ item.peo }}+人付款</div>
             </div>
           </div>
         </div>
@@ -122,8 +122,8 @@
             <img v-lazy="item.goodsCoverImg" alt="">
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
-              <div class="price">¥ {{ item.sellingPrice }}</div>
-              <div class="peo">{{ item.peo }}+人付款</div>
+                <div class="price">¥ {{ item.sellingPrice }}</div>
+                <div class="peo">{{ item.peo }}+人付款</div>
             </div>
           </div>
         </div>
@@ -136,8 +136,9 @@
             <img  v-lazy="item.goodsCoverImg" alt="">
             <div class="good-desc">
               <div class="title">{{ item.goodsName }}</div>
-              <div class="price">¥ {{ item.sellingPrice }}</div>
-              <div class="peo">{{ item.peo }}+人付款</div>
+
+                <div class="price">¥ {{ item.sellingPrice }}</div>
+                <div class="peo">{{ item.peo }}+人付款</div>
             </div>
           </div>
         </div>
@@ -189,61 +190,61 @@ const state = reactive({
   categoryList: [
     {
       name: "手机",
-      imgUrl: "https://i.postimg.cc/Cx8qn8r1/image.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus_3d/file/4YT18QCAgs2C/e09c9f4c-341f-4d90-b0bd-730067a597b9.png",
       categoryId: 100001,
       bgc: "#fff",
     },
     {
       name: "数码影音",
-      imgUrl: "https://i.postimg.cc/Bn772PPM/image.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus_3d/preview_image/JESQXrbFzHH2/ff36cb63-008e-4350-b75e-a188fff0860b.png",
       categoryId: 100003,
       bgc: "#fff",
     },
     {
       name: "美妆护肤",
-      imgUrl: "https://i.postimg.cc/kX4ZCJ1w/image.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/79tXTOSBRmEO/73689aed-f39c-4de7-9b06-21a851ff1c2a.png",
       categoryId: 100002,
       bgc: "#fff",
     },
     {
       name: "珠宝首饰",
-      imgUrl: "https://i.postimg.cc/YSf8gZDh/image.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/6c53lU2ZnsnZ/686609d9-db25-4ccd-b5e4-314988ac87a7.png",
       categoryId: 100004,
       bgc: "#fff",
     },
     {
       name: "服饰内衣",
-      imgUrl: "https://i.postimg.cc/7L8wbGjq/image.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/T3gLNT1sdmxx/0962f313-38cb-4d8f-a5fb-febf313fc447.png",
       categoryId: 100005,
       bgc: "#fff",
     },
     {
       name: "小喵超市",
-      imgUrl: "https://i.postimg.cc/wMPnPnp9/46trolley.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/2z7Cpkqmflhg/1b56aaa5-61c4-4fc6-8fa6-af0f6afecdf4.png",
       categoryId: 100006,
       bgc: "#fff",
     },
     {
-      name: "9.9元秒杀",
-      imgUrl: "https://i.postimg.cc/MK7htPLJ/9-9.png",
+      name: "运动户外",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/kNul1MYUIIj5/55aa81a9-4e2f-4089-bc6f-e241d35e6cdc.png",
       categoryId: 100007,
       bgc: "#fff",
     },
     {
       name: "赚金币",
-      imgUrl: "https://i.postimg.cc/MHDJwZPN/1.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/MJMsRApZlquU/25f795e1-0028-4555-96d6-a57b62d81189.png",
       categoryId: 100008,
       bgc: "#fff",
     },
     {
-      name: "手机回收",
-      imgUrl: "https://i.postimg.cc/DypqVFHr/01.png",
+      name: "流行鞋靴",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/1lScQsvKiUOy/779dbfb0-bd32-4881-ba01-2552f95ed05a.png",
       categoryId: 100009,
       bgc: "#fff",
     },
     {
       name: "更多",
-      imgUrl: "https://i.postimg.cc/j2G2hKvG/1.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus_3d/file/NlKK3XkjWiGH/8b8188c1-c862-4d75-9250-e1c403974f77.png",
       categoryId: 100010,
       bgc: "#fff",
     },
@@ -453,6 +454,7 @@ onMounted(async () => {
       margin-left .15rem
 
 .category-list
+    padding-bottom .24rem /* 8/16 */
     background #FFF6F6
     display flex
     flex-shrink 0
@@ -502,6 +504,10 @@ onMounted(async () => {
           padding: 10px 0;
           .title {
             color: #222333;
+          }
+          .zi {
+            position relative
+            font-size 0rem /* 0/16 */
           }
           .price {
             color: $primary;

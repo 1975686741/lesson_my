@@ -68,5 +68,4 @@ const scrollTop = (el, from = 0, to, duration = 1500) => {
 .backtop
     position fixed
 
-
 </style>
