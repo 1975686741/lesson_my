@@ -97,7 +97,7 @@ nextTick(() => {
         .item_logo
             width 0
     .item
-        width 1rem /* 40/16 */
+        width 1rem 
         height 100%
         position relative
         .rvan
@@ -123,8 +123,8 @@ nextTick(() => {
             transition width .4s
             position relative
             img
-                width 1rem
-                height 1rem
+                width 1.12rem  // 等比
+                height .8rem 
                 margin auto
                 position absolute
                 top 0

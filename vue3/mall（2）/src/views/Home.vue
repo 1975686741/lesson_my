@@ -47,7 +47,7 @@
     </section>
     <div class="four">
       <div class="left">
-        <img src="https://i.postimg.cc/yxQfWp1Q/image.png" alt="" />
+        <img src="https://www.bing.com/th/id/OGC.4df88100aaa54686487a16d6875b4900?pid=1.7&rurl=https%3a%2f%2fwimg.588ku.com%2fgif%2f21%2f07%2f23%2f2013dade60710e6f719a008dc47138b7.gif&ehk=gjxmxHcjqQqoFTUSvjqIfyIjOUCktT0cYpOvomefZcg%3d" alt="" />
       </div>
       <div class="big">
         <div class="zuo">
@@ -300,17 +300,18 @@ onMounted(async () => {
 
 .four
   padding-top: 0.2rem
-  height 2rem
+  height 1.6rem
   display flex
   .left
-    background: linear-gradient(to left, transparent, mistyrose)
+    // background: linear-gradient(to left, transparent, mistyrose)
     flex 1
     height 1rem
     margin-right .8rem
-    border-radius 0 50% 50% 0
-    border-style: groove
+    // border-radius 0 50% 50% 0
+    // border-style: groove
     img
       wh(100%,auto)
+      margin: -10px 0 0 12px;
   .big
     width 78%
     height 1rem
