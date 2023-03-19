@@ -253,7 +253,7 @@ const state = reactive({
     },
     {
       name: "流行鞋靴",
-      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/1lScQsvKiUOy/779dbfb0-bd32-4881-ba01-2552f95ed05a.png",
+      imgUrl: "https://iconfont.alicdn.com/p/illus/preview_image/RASmcGN5ZBVS/54e38bb3-4648-4124-91bf-ec717afd5d89.png",
       categoryId: 100009,
       bgc: "#fff",
     },
@@ -481,17 +481,18 @@ onMounted(async () => {
           }
           .price {
             color: $primary;
-            float: left;
-            flex 1
+            float left
+            height .6375rem 
           }
           .peo {
-            text-align center
-            width 86%
+            height .6375rem 
             color: gray;
-            font-size: 12px;
-            transform : scale(0.85,0.85);
+            font-size: 14px;
+            transform : scale(0.8,0.8);
             *font-size: 10px;
-            margin-top: .07rem
+            overflow: auto
+            text-align:left
+            justify-content:center
           }
 
         }

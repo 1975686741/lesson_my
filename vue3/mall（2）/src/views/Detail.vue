@@ -1,6 +1,7 @@
 <template>
     <div class="product-detail">
         <simple-header name="商品详情"></simple-header>
+        
     </div>
 </template>
 
