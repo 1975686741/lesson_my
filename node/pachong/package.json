@@ -1,0 +1,17 @@
+{
+  "name": "pachong",
+  "version": "1.0.0",
+  "description": "- top250 豆瓣 MVC设计模式 在移动时代被抛弃了\r     - MVVM  现代vue react开发思想\r         - index.html 只有一个 #app 挂载点  响应更快\r         - 前后端分离  axios 发送xhr请求 后端返回api  json数据格式\r         - reactive响应式 把数据显示到页面\r     - MVC 传统的后端驱动web架构\r         - M =》 数据 =》V 渲染 =》返回完整的html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
+    "koa": "^2.14.1",
+    "request-promise": "^4.2.6"
+  }
+}
