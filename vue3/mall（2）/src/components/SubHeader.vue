@@ -169,7 +169,7 @@ nextTick(() => {
             padding 0.1333rem 0
             color #232326
             border-radius .53333rem
-            background 	RGB(230,230,250,0.8)
+            background 	RGB(230,230,250)
 
         &.item_logo
             transition width .4s
