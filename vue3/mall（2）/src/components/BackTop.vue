@@ -2,7 +2,7 @@
     <div 
      class="backtop" 
      v-show="backtop" 
-     :style="{right: `${right}px`, bottom: `${bottom}px`, background : `$primary` }  " 
+     :style="{right: `${right}px`, bottom: `${bottom}px` }  " 
      @click="toTop"
     >
      <slot></slot>        
@@ -67,5 +67,4 @@ const scrollTop = (el, from = 0, to, duration = 1500) => {
 <style lang="stylus" scoped>
 .backtop
     position fixed
-
 </style>

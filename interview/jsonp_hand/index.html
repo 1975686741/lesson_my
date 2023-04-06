@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script>
+        // 第一二四种
+        fetch('http://localhost:2000/other')
+        .then(data => data.json())
+        .then(data => {
+            console.log(data)
+        })
+    </script> -->
+<!-- 
+<script>
+function callback(jsondata) {
+    console.log(jsondata);
+}
+</script>
+    <!-- 第三种 script标签内引入 不会被同源策略限制 --> 
+    <!-- 希望相应是JS -->
+    <!-- <script src="http://localhost:2000/other"></script> -->
+
+    <script>
+    let jsonp = function(url, data={}, callback) {
+        let cd_name = 'jsonpCallback'
+        let oScript = document.createElement('script')
+        oScript.src = url + '?callback=' + cd_name
+        document.body.appendChild(oScript)
+
+        window[cd_name]  = function(data) {
+            callback(data)
+            document.body.removeChild(oScript) // 打扫战场
+        }
+    }
+        jsonp('http://localhost:2000/other', {page:1,cate:'recommend'},
+        function(data) {
+            console.log(data);
+        })
+    </script>
+</body>
+</html>

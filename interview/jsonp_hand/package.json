@@ -1,0 +1,16 @@
+{
+  "name": "jsonp_hand",
+  "version": "1.0.0",
+  "description": "- 跨域\r     - 后端的处理\r          1.  CORS通信    AJAX 同源策略  \r                 Access-Control-Allow-Origin  \r                 res.header('Access-Control-Allow-Origin', '*')\r          2. 不受同源机制限制的 script标签\r                1. <script scr=\"外网地址\"></script>\r                2. img  link ...   链接外界的静态资源",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
