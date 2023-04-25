@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世龙科技有限公司官网</title>
+    <script>
+      function redirectToLoginPage() {
+        window.location.href = "login.html"; // Replace "login.html" with the actual login page URL
+      }
+    </script>
+    <link rel="stylesheet" href="../dist/output.css">
+</head>
+<body>
+    <header class="bg-gray-800 sticky top-0 z-50">
+        <nav class="container px-6 py-3 mx-auto md:flex md:justify-between md:items-center">
+          <div class="flex items-center justify-between">
+            <div>
+              <a class="text-white text-2xl font-semibold uppercase hover:text-gray-300" href="#">My App</a>
+            </div>
+            <div class="flex md:hidden">
+              <button type="button" class="text-gray-500 hover:text-white focus:outline-none focus:text-white">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+                  <path fill-rule="evenodd" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="md:flex">
+            <div class="flex flex-col md:flex-row md:mx-6">
+              <a class="my-1 text-white font-medium md:mx-4 md:my-0 hover:text-gray-300" href="#">Home</a>
+              <a class="my-1 text-white font-medium md:mx-4 md:my-0 hover:text-gray-300" href="#">About</a>
+              <a class="my-1 text-white font-medium md:mx-4 md:my-0 hover:text-gray-300" href="#">Services</a>
+              <a class="my-1 text-white font-medium md:mx-4 md:my-0 hover:text-gray-300" href="#">Contact</a>
+            </div>
+            <div class="flex items-center">
+              <button onclick="redirectToLoginPage()" class="bg-white rounded-md text-gray-800 px-4 py-2 uppercase font-medium tracking-wide">Sign In</button>
+            </div>
+          </div>
+        </nav>
+    </header>
+    <section class="bg-gray-100 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">我们的服务</h2>
+          <p class="text-gray-600">我们为您提供以下服务</p>
+        </div>
+        <div class="mt-12 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img class="w-full h-56 object-cover" src="https://m.360buyimg.com/babel/jfs/t1/151963/23/31996/81922/642e7aa0F02fe1494/f00c2b6ccfd4a17c.png" alt="Service 1">
+            <div class="py-4 px-6">
+              <h3 class="text-lg font-bold mb-2">服务1</h3>
+              <p class="text-gray-600">这里是服务1的描述，可以根据需要进行编辑。</p>
+            </div>
+          </div>
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img class="w-full h-56 object-cover" src="https://m.360buyimg.com/babel/s580x360_jfs/t1/8529/22/20744/13947/63b40457F665a1550/85dbe003dae88d87.jpg!q70.dpg" alt="Service 2">
+            <div class="py-4 px-6">
+              <h3 class="text-lg font-bold mb-2">服务2</h3>
+              <p class="text-gray-600">这里是服务2的描述，可以根据需要进行编辑。</p>
+            </div>
+          </div>
+          <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+            <img class="w-full h-56 object-cover" src="https://source.unsplash.com/2d4lAQAlbDA/800x500" alt="Service 3">
+            <div class="py-4 px-6">
+              <h3 class="text-lg font-bold mb-2">服务3</h3>
+              <p class="text-gray-600">这里是服务3的描述，可以根据需要进行编辑。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-gray-800">
+      <div class="container px-6 py-32 mx-auto">
+        <div class="items-center lg:flex">
+          <div class="lg:w-1/2">
+            <h2 class="text-3xl font-semibold text-white md:text-4xl">Build Your Next Project with Tailwind CSS</h2>
+            <p class="mt-4 mb-6 text-gray-300">Tailwind CSS is a utility-first CSS framework that makes designing consistent, responsive web pages easy.</p>
+            <button class="bg-white text-gray-800 font-bold rounded-md py-4 px-10 shadow-md hover:shadow-lg">Get Started</button>
+          </div>
+          <div class="lg:w-1/2 lg:pl-24 mt-12 lg:mt-0">
+            <img class="rounded-md shadow-md" src="https://m.360buyimg.com/babel/s1420x740_jfs/t1/194401/20/32669/76553/64142a96F7733e6ad/cf2727848c86cf45.jpg!q70.dpg" alt="Hero Image">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="bg-gray-100 py-10">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="sm:flex sm:justify-between sm:items-center">
+          <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+            Contact Us
+          </h2>
+          <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0">
+            <a href="#" class="bg-white border border-transparent rounded-md py-2 px-4 inline-flex items-center justify-center text-base font-medium text-gray-700 hover:text-gray-500">
+              Get in touch
+            </a>
+          </div>
+        </div>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-10">
+          <div>
+            <h3 class="text-lg font-medium text-gray-900">
+              Contact Information
+            </h3>
+            <dl class="mt-6 space-y-4">
+              <div>
+                <dt class="sr-only">Email</dt>
+                <dd class="flex">
+                  <svg class="flex-shrink-0 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14.414V5a2 2 0 00-2-2H5a2 2 0 00-2 2v9.414l8.485-8.485a1 1 0 011.414 0L19 14.414z" />
+                  </svg>
+                  <span class="ml-3">support@example.com</span>
+                </dd>
+              </div>
+              <div>
+                <dt class="sr-only">Phone</dt>
+                <dd class="flex">
+                  <svg class="flex-shrink-0 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6a2 2 0 01-2-2V6a2 2 0 012-2h6a2 2 0 012 2z" />
+                  </svg>
+                  <span class="ml-3">+1 (555) 555-5555</span>
+                </dd>
+              </div>
+              <div>
+                <dt class="sr-only">Address</dt>
+                <dd class="flex">
+                  <svg class="flex-shrink-0 h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-2-2h-4l-2 2v-8a2 2 0 012-2h4a2 2 0 012 2v8z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 10V7a2 2 0 00-2-2H4a2 2 0 00-2 2v3m2 0h16m-16 0a2 2 0 012-2h12a2 2 0 012 2m-12 0v8l2-2h4l2 2v-8m-8 4h16" />
+                  </svg>
+                  <span class="ml-3">1234 Main St, Anytown USA</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <form class="mt-10 sm:mt-0" action="#" method="POST">
+            <div class="shadow overflow-hidden sm:rounded-md">
+              <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="grid grid-cols-6 gap-6">
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
+                    <input type="text" name="first_name" id="first_name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </div>
+                  <div class="col-span-6 sm:col-span-3">
+                    <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
+                    <input type="text" name="last_name" id="last_name" autocomplete="family-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </div>
+                  <div class="col-span-6">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="text" name="email" id="email" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </div>
+                  <div class="col-span-6">
+                    <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                    <input type="text" name="subject" id="subject" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                  </div>
+                  <div class="col-span-6">
+                    <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea name="message" id="message" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  Send
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+</body>
+</html>
