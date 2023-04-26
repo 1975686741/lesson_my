@@ -2,7 +2,7 @@ import { Configuration, OpenAIApi } from 'openai'
 // 配置 
 const configuration = new Configuration({
     // chatgpt  key 
-    apiKey: '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'
+    apiKey: ''
 }) 
 // api?  写首诗歌
 const openai = new OpenAIApi(configuration) 
