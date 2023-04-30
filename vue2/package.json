@@ -1,0 +1,16 @@
+{
+  "name": "vue2-diff-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev":"parcel index.html --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "parcel-bundler": "^1.12.5"
+  }
+}
