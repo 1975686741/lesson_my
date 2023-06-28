@@ -1,0 +1,9 @@
+- 约定大于一切  PC
+    - /pages  默认路由
+    - app.vue  根组件 NustPage内置组件
+- 返回的不再是index.html模板 
+    - 带有语义化标签的服务器端渲染的template html  字符串
+    - 少不了SEO  少不了定义title
+- types
+    - 类型声明放到一起，方便管理 多人协作
+- vue3.0 + ssr + ts + hooks 爆燃

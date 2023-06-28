@@ -1,0 +1,3 @@
+<template>
+    <AppHome />
+</template>

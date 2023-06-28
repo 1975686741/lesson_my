@@ -1,0 +1,96 @@
+{
+  "Vue Component": {
+    "prefix": "vc",
+    "body": [
+      "<template>",
+      "  <div class='${1:ComponentName}'>${1:ComponentName}</div>",
+      "</template>",
+      ""
+    ]
+  },
+  "script:setup": {
+    "prefix": "ss",
+    "body": [
+      "<script setup lang=\"ts\">",
+      "  ${1}",
+      "</script>",
+      ""
+    ]
+  },
+  "style:postcss": {
+    "prefix": "sp",
+    "body": [
+      "<style lang=\"postcss\" scoped>",
+      "  ${1}",
+      "</style>",
+      ""
+    ]
+  },
+  "useAnimation": {
+    "prefix": "ua",
+    "body": [
+      "const { \\$gsap, root } = useAnimation(() => {",
+      "${1}",
+      "});"
+    ]
+  },
+  "template": {
+    "prefix": "tp",
+    "body": ["<template>", "  ${1}", "</template>", ""]
+  },
+  "Destructuring assignment object": {
+    "prefix": "dao",
+    "body": ["const {${2}} = ${1};"]
+  },
+  "Destructuring assignment array": {
+    "prefix": "daa",
+    "body": ["const {${2}} = ${1};"]
+  },
+  "Composable async": {
+    "prefix": "cpa",
+    "body": ["export const ${1} = async () => {${2}};"]
+  },
+  "Composable": {
+    "prefix": "cp",
+    "body": ["export const ${1} = () => {${2}};"]
+  },
+  "Ref HTMLElement": {
+    "prefix": "re",
+    "body": ["const ${1} = ref<HTMLElement>();"]
+  },
+  "Component props": {
+    "prefix": "dp",
+    "body": ["type Props = {${1}};", "", "defineProps<Props>();"]
+  },
+  "Single type store": {
+    "prefix": "sts",
+    "body": [
+      "import type { SingleResponse } from '../types/single-response.type';",
+      "",
+      "export const use${1}Store = async () => {",
+      "  const ${2} = useState<SingleResponse>('${2}');",
+      "",
+      "  const get${1} = async () => {",
+      "    const query = useQueryString({",
+      "      populate: singleApiPopulate,",
+      "    });",
+      "",
+      "    const { data } = await useApiHttpClient<SingleResponse>(",
+      "      `/api/${2}?\\${query\\}`,",
+      "    );",
+      "",
+      "    if (data.value) {",
+      "      ${2}.value = data.value;",
+      "    }",
+      "  };",
+      "",
+      "  if (!${2}.value) {",
+      "    await get${1}();",
+      "  }",
+      "",
+      "  return ${2};",
+      "};",
+      ""
+    ]
+  }
+}
