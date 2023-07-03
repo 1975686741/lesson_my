@@ -1,0 +1,24 @@
+root = "."
+tmp_dir = "tmp"
+build_args = []
+exclude_dir = []
+exclude_file = []
+exclude_regex = []
+include_ext = ["go"]
+
+[build]
+bin = "main"
+cmd = "go build -o ./tmp/main"
+
+[[runners]]
+runner = "goland"
+watcher = ["."]
+
+[[runners.loggers]]
+type = "console"
+frame_format = "classic"
+color = true
+
+[[runners.loggers]]
+type = "file"
+output = "log/air.log"
