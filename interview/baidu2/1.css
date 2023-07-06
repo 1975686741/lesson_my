@@ -1,0 +1,24 @@
+/* // 单行文本省略 */
+.single-line-ellipsis {
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;  /* 文本超出 省略号 */
+}
+
+/*多行文本截断*/
+.mult-line-clamp {
+    /* 新的格式化上下文     弹性布局的早期*/
+    display: -webkit-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;  /*限制行数*/
+}
+
+/* 如何判断一个对象为Promise对象
+*  instanceOf
+* 使用Promise.resolve()方法判断 
+传入的参数转换为Promise对象，如果参数本身就是Promise对象，则直接返回该对象。
+* 判断对象是否具有then方法
+*/
