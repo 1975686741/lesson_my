@@ -7,7 +7,7 @@ const doChat = async (message :string) => {
   const result = await chat([{
     role: "user",
     content: message
-  }], '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');
+  }], '');
   console.log(result);
 }
 </script>
