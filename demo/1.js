@@ -10,13 +10,13 @@ let arr2 = arr.filter((currentValue, currentIndex, selfArr) => {
     // console.log(selfArr);
     return selfArr.findIndex(b => b.id === currentValue.id) === currentIndex;
 });
-// console.log(arr2);
-let res = [];
-for (let i = 0; i < arr2.length; i++) {
-    for (let j = 0; j < arr2.length; j++) {
-        if (arr2[i][1] < arr2[j][1]) {
-            res.push(arr2[i])
-        }
-    }
-}
-console.log(res);
+console.log(arr2);
+// let res = [];
+// for (let i = 0; i < arr2.length; i++) {
+//     for (let j = 0; j < arr2.length; j++) {
+//         if (arr2[i][1] < arr2[j][1]) {
+//             res.push(arr2[i])
+//         }
+//     }
+// }
+// console.log(res);
