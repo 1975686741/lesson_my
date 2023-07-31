@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>圣杯布局</title>
+    <!-- /* 1. padding 把左右留出来
+    2. 三个元素都浮动·left 
+    3. main width 100% 
+    4. left margin-left -100%
+    5. position:relative; left -200px;
+    6. right margin-left -200px right -200px  */ -->
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    header,
+    footer {
+      height: 100px;
+      line-height: 100px;
+      background-color: yellow;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bolder;
+    }
+
+    section {
+      padding: 0 200px 0 200px;
+      overflow: hidden;
+    }
+
+    main,
+    .left,
+    .right {
+      position: relative;
+      float: left;
+      line-height: 130px;
+      text-align: center;
+    }
+
+    .left {
+      margin-left: -100%;
+      left: -200px;
+      width: 200px;
+      background-color: red;
+    }
+
+    .right {
+      margin-left: -200px;
+      right: -200px;
+      width: 200px;
+      background-color: green;
+    }
+
+    main {
+      width: 100%;
+      background-color: blue;
+    }
+    </style>
+</head>
+<body>
+    <!-- 记忆点 三列 主列自适应 侧边栏固定高度 主列优先显示 taobao pc页-->
+    <header>
+        header
+    </header>
+    <section>
+        <main>main</main>
+        <aside class="left">left</aside>
+        <aside class="right">right</aside>
+    </section>
+    <footer>
+        footer
+    </footer>
+</body>
+</html>

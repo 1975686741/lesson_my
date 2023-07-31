@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table-layout {
+            display: table;  /*启用新的table格式化上下文*/
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        .table-row {
+            display: table-row;
+            height: 100%;
+        }
+        .left-cell .right-cell {
+            display: table-cell;
+            padding: 10px;
+        }
+        .left-cell {
+            background-color: pink;
+            width: 200px;
+        }
+        .right-cell {
+            background-color: #000;
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-layout">
+        <div class="table-row">
+            <div class="left-cell">
+                左侧
+            </div>
+            <div class="right-cell">
+                右侧
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>时间分片 requestIdleCallback</title>
+</head>
+<body>
+    <script>
+    var tasksNum = 10000000;
+    var i = 0;
+    // requestAnimationFrame  宏任务
+    requestIdleCallback(unImportWork)  // 微任务
+    function unImportWork(deadline) {
+        // 每个时间切片  执行一次，一直执行
+        // deadline  本次执行时间快到结束了
+        while(deadline.timeRemaining() && tasksNum > 0) {
+            i++;
+            console.log(`执行了${i}个任务`);
+            tasksNum--;
+        }
+        if (tasksNum > 0) {
+            requestIdleCallback(unImportWork);
+        }
+    }
+    </script>
+</body>
+</html>

@@ -46,8 +46,6 @@ Promise then  第二个参数 和catch的区别
 
 # 介绍一下HTTP状态码  相应的场景
     - 1XX  消息状态码
-        - 100：Continue 继续。客户端应继续其请求。
-        - 101：Switching Protocols 切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到 HTTP 的新版本协议。
     - 2XX  成功
         - 200：OK 请求成功。一般用于 GET 与 POST 请求。
         - 201：Created 已创建。成功请求并创建了新的资源。
@@ -94,7 +92,7 @@ Vue 3 的生态系统正在迅速发展中，一些 Vue 2 的插件和组件库�
     - setup 语法糖 + Composition API: 与 Vue 2 的选项式 API 相比，组合式 API 允许将相关的功能更紧密地组织在一起，把代码更好地聚合在一起 & 逻辑重用,提高了代码的可读性和可维护性。
     - 更好的 TypeScript 支持：Vue 3 的源代码使用 TypeScript 编写，这意味着 Vue 3 与 TypeScript 的集成更加紧密，提供了更好的类型推断和类型安全。
     - 多个根元素：Vue 3 允许在组件模板中使用多个根元素，不再需要一个包裹元素。这可以减少不必要的 DOM 结构，提高代码的可读性。
-    - 响应式系统：Vue 2 的响应式系统使用了 Object.defineProperty 来劫持数据的访问和修改，而 Vue 3 使用了 ES6 的 Proxy 对象实现响应式系统，Proxy 对象可以捕获到更多的操作，如属性的删除和新增，从而实现更全面的响应式追踪。，提供了更高效和灵活的数据劫持机制。
+    - 响应式系统：Vue 2 的响应式系统使用了 Object.defineProperty 来劫持数据的访问和修改，而 Vue 3 使用了 ES6 的 Proxy 对象实现响应式系统，Proxy 对象可以捕获到更多的操作，如属性的删除和新增，从而实现更全面的响应式追踪。提供了更高效和灵活的数据劫持机制。
     -  源码架构：Vue 2 的源码采用的是 monolithic（单体）架构，整个源码都集中在一个代码库中。而 Vue 3 的源码采用的是 monorepo（多库）架构，将不同功能模块拆分成独立的代码库，例如 runtime-core、reactivity、compiler 等。
     -  Tree-shaking：Vue 3 的核心库被设计为可 Tree-shaking，这意味着只有使用到的功能会被打包，未使用的功能会被移除，最终产出的代码更小。
     -  静态树和静态属性提升：Vue 3 在编译阶段进行了静态树和静态属性提升的优化。这意味着 Vue 3 可以在编译时确定哪些部分是静态的，从而避免了不必要的渲染和更新，提高了性能。
@@ -242,3 +240,243 @@ v-show指令也用于控制元素的显示和隐藏，但是它不同于v-if。�
     - 拷贝 -> 浅拷贝 -> 深拷贝  
 
     JS 对象赋值不是拷贝
+
+
+# Vue-Router 哪几种方案，原理是什么？   
+    - URL改变，但页面无需刷新，SPA单页应用，优化了体验
+      - 传统的基于后端路由，访问请求，会白屏，重新请求
+      - 动态修改页面
+    1. Hash模式
+      - 使用URL的哈希部分（#后面的部分）来模拟路由。当URL中的哈希值发生变化时（HashChange事件），Vue-Router会根据哈希值的变化来匹配对应的路由，并进行页面更新。
+      - 优点：兼容性好，可以支持不同浏览器和服务器环境。
+      - 缺点：URL中含有冗余的#字符，不够美观。
+    2. History模式
+      - 使用HTML5的History API，在不刷新整个页面的情况下改变URL，实现路由切换效果。通过使用pushState或replaceState方法来修改URL，同时使用popstate事件来监听URL的变化，订阅发布者模式。
+      - 优点：URL更加美观，没有冗余的#字符。
+      - 缺点：需要服务器端配置支持，否则在刷新页面时会导致404错误。兼容性较差。
+    3. Abstract模式
+      - 在非浏览器环境中使用，例如在服务器端渲染（SSR）或原生移动应用中。不会直接操作URL，而是将路由状态保存在内存中，并通过调用相应的方法来实现路由切换和页面渲染。
+      - 优点：适用于非浏览器环境，不依赖URL。
+      - 缺点：不支持直接访问特定路由。
+    
+# vue修饰符
+    - 表单修饰符
+        - v-model.lazy  v-model.trim v-model.number...
+    - 事件修饰符
+        - v-on:click.stop  v-on:click.prevent...
+        - .passive v-on:scroll.passive 节流
+        - .capture  父元素先于子元素触发
+        - .self 只有事件是由元素自己触发时才触发对应的事件处理函数，而不是来自子元素的冒泡事件
+    - 键盘修饰符
+  
+# 编写一个focus指令 directive
+    ``
+            // 指令是会绑定DOM的
+        Vue.directive('focus', {
+            // 当被绑定的元素插入到DOM中时。。
+            inserted: function(el) {
+                el.focus();
+            }
+        })
+        <input v-focus />
+    ``
+
+# 点击回到顶部
+    - 锚链接
+        <body>
+            <div id="top"></div>
+        <a href="#top">回到顶部</a>
+    - js
+        window.scrollTo({
+            top:0,
+            behavior: 'smooth'  // 平滑滚动效果
+        })
+
+# html input 如何实现上传多个文件
+    <input type="file" multiple>
+
+# display 有哪些值？
+    - 盒子的默认行为
+        - inline  block  inline-block(会有小间隙，设置父元素font-size=0)
+    - 常用布局方案 flex table grid 
+    - 离开文档流  none
+
+# 什么是事件委托
+    事件委托是一种提高程序性能，降低内存空间的技术手段，它利用了事件冒泡的特性，只需要在某个祖先元素上注册一个事件，就能管理其所有后代元素上同一类型的事件，而不需要给子元素一个一个的注册事件。
+
+# 盒模型
+    - 标准盒模型： 一个块的总宽度 = width+margin(左右)+padding(左右)+border(左右)
+    - 怪异盒模型： 一个块的总宽度 = width（既 width 已经包含了 padding 和 border 值）+ margin（左右）
+
+# call，apply，bind
+        - call 方法接受一个参数列表，每个参数都需要显式列出并依次传递给函数。
+        - apply 方法接受两个参数，第一个参数是要绑定给函数的执行上下文，第二个参数是一个数组或类数组对象，其中包含要作为参数传递给函数的值。
+        - bind 方法不立即执行函数，而是返回一个新函数。返回的函数可以稍后调用，并将指定的执行上下文和参数传递给原始函数。
+
+# 浅拷贝和深拷贝
+
+# map和forEach
+    - 返回值：
+map 方法会返回一个新数组，该数组中的每个元素是执行回调函数后的返回值。
+forEach 方法没有返回值，只是对数组的每个元素依次执行指定的回调函数。
+    - 使用结果：
+map 方法的返回值可以被存储和进一步处理。通常情况下，我们会使用 map 来对数组中的每个元素进行处理，并将处理结果组成一个新的数组。
+forEach 方法主要用于迭代数组，执行一些副作用操作（比如打印、修改其他变量等），而不关心返回值。
+    - 修改原数组：
+map 方法不会改变原始数组，它会创建一个新的数组来存储处理后的结果。
+forEach 方法也不会改变原数组，但可以通过回调函数中对元素的操作间接修改原数组。
+    - 中断循环：
+map 方法会遍历完整个数组，并将每个元素都传递给回调函数进行处理，无法中途跳出循环。
+forEach 方法也会遍历完整个数组，无法中途跳出循环。如果需要提前终止循环，可以使用 some 或 every 方法。
+
+    需要处理数组并获得一个新的数组作为结果，可以使用 map 方法；而如果只是简单地对数组进行遍历，进行一些副作用操作，可以使用 forEach 方法。
+# 闭包
+
+# 原型和原型链
+
+
+
+
+#  编译原理 component -> template -> compiler -> h(三个参数, babel 抽象语法树构建) -》 VNode + Renderer -》DOM树
+    - `` 
+            let a = 1;
+            let b = 2;
+            let c = a + b;
+            词法分析 token 以树状结构组织   所有代码形成 AST抽象语法树
+        ``
+
+# h（）函数   模式
+    - 返回的VNode设计 
+    - 参数  三个  tag data children
+
+# VUE源码学到了什么？
+    - 处处都是性能优化
+        - VNodeFlags ChildrenFlags
+            - 位运算 & 
+                - render 到底是走DOM API 还是Component
+                - render 位运算& 
+        - element VNode 真实dom
+    - 模块化
+        - flags配置  单独放
+        - reactive
+        - compiler
+        - renderer
+    - 测试驱动开发
+        - 实现一个小目标 =》慢慢推进 =》大目标
+    - 面向对象设计
+        - Component组件设计
+            - 继承
+                - render必须有（vue2.0）
+                - 基类 throw error
+
+
+
+# 组件生成什么？
+    - render template{{}}  v-if  :  产出vdom虚拟dom =》createElement
+    - reactive  ref  setup
+    - 生命周期 
+    - VDOM
+    - DIFF
+
+# Component 类 函数 =》render =》真实的dom
+    - 组件化思想 =》 reactive diff 数据驱动思想 =》最后 createElement
+
+# 组件前世的本质 一个组件就是一个函数，给什么样的数据，就渲染对应的 html 内容。
+    - Component(VDOM)
+    - +
+    - render 方法
+# 组件的产出就是 Virtual DOM
+    - 分层  平台无关性 VDOM -> PATCH -> HTML/WXML/XML都可以  实现SSR 在服务器端渲染
+    - 性能优化 
+        - 查找  比对   在内存中高效地收集差异
+
+# 函数式组件(Functional component) 和 有状态组件(Stateful component)。
+    - 函数式组件 展示为主     props
+        - function MyComponent(props) {}
+        - 纯函数  一个props状态对应唯一的template
+        - 没有自身的状态，直接收外部的数据
+        - 产出VNode的方式 单纯的函数调用
+    - 有状态组件  数据业务 父组件来做 
+        - class MyComponent {}
+        - 是一个类，可实例化
+        - 可以有自身状态
+        - 产出 VNode 的方式：需要实例化，然后调用其 render 函数
+
+- 组件是怎么挂载到页面上的 VNode + Renderer 
+- 当更新时，组件是如何将effect 
+- 真实DOM 和 VDOM
+    - tag, props({class: "sd", id: "11" }), children: []
+    - Fragment  document.createDocumentFragment  性能优化组件
+    - Portal  制定目标地  弹出层
+  
+# flags设计
+    - 优化手段  不需要每次都判断
+    - 区分 VNode 是 html 元素还是组件亦或是普通文本
+        1. 拿到 VNode 后先尝试把它当作组件去处理，如果成功地创建了组件，那说明该 VNode 就是组件的 VNode
+        2. 如果没能成功地创建组件，则检查 vnode.tag 是否有定义，如果有定义则当作普通标签处理 html标签校验
+        3. 如果 vnode.tag 没有定义则检查是否是注释节点
+        4. 如果不是注释节点，则会把它当作文本节点对待
+
+`` if (flags & VNodeFlags.ELEMENT) {
+  // VNode 是普通标签
+  mountElement(/* ... */)
+} else if (flags & VNodeFlags.COMPONENT) {
+  // VNode 是组件
+  mountComponent(/* ... */)
+} else if (flags & VNodeFlags.TEXT) {
+  // VNode 是纯文本
+  mountText(/* ... */)
+} ``
+如上，采用了位运算，在一次挂载任务中如上判断很可能大量的进行，使用位运算在一定程度上再次拉升了运行时性能。
+
+# 二次更新渲染细节
+  - 如何更新 首先如何比对节点
+    - 比较tag
+      - tag类型都不一样  直接replace
+    - 比较data
+    - 比较children
+# vue源码中学到了什么？
+  - 模块化,职责划分
+  - 尊重 对方的接口参数返回值
+    - 一个函数/文件只做一件事
+    - h.js
+    - render.js
+      - patchData.js
+      - diff.js
+- 虚拟DOM比真实DOM快这句话其实是错的，或者说是不严谨的。那正确的说法是什么呢？虚拟DOM算法操作真实DOM，性能高于直接操作真实DOM，虚拟DOM和虚拟DOM算法是两种概念。虚拟DOM算法 = 虚拟DOM + Diff算法
+
+Vue使用虚拟DOM（Virtual DOM，简称VDOM）的优点主要有以下几个：
+
+增量渲染：VDOM可以通过比较前后状态差异来高效地更新视图，从而实现增量渲染，避免了全量重绘的开销。
+
+平台无关性：VDOM是一个抽象的概念，可以在不同的平台上实现，例如浏览器、Node.js等。
+
+组件化开发：Vue将组件作为基本的构建单元，每个组件都有自己的VDOM，这样就可以将视图和业务逻辑分离，提高了代码的可维护性和复用性。同时，由于VDOM是独立于平台和具体实现的，因此也增强了组件的可移植性。
+
+提高了开发效率：通过VDOM，我们可以只关注数据的变化，而不必手动操作DOM，大大提高了开发效率。另外，在需要频繁操作DOM的场景下，VDOM也可以帮助我们避免一些常见的性能问题，例如频繁地读写DOM属性。
+
+可以实现跨平台开发：由于VDOM的特性，Vue也可以通过一些工具进行跨平台开发，例如通过Weex来实现Web、iOS、Android等多个平台的开发。
+
+# ORM  对象关系映射
+    可以简化数据库操作，避免手动编写 SQL 语句，提高开发效率。ORM 也能够提高代码的可读性和可维护性，因为它能够将与数据库相关的代码与业务逻辑分离开来，使代码更加清晰。
+
+
+# cookie 或者本地存储
+    - httponly  防止xss跨站脚本攻击
+        - 默认是js也可以读取 =》功能会受到XSS攻击（网页中植入一段代码，把cookie读取发送到黑客，获取了身份）
+        - true 只在http请求过程中传递
+        - session_id这种cookie 肯定要设置，username等js需要访问的 安全性没问题的业务cookie不设置
+    - secure
+        - 只有是https的可靠链接才会发送
+- 本地存储
+    - cookie过期时间，每次请求都会传输，要考虑性能和安全问题
+      - localStorage一直都在，只存在客户端，默认不参与服务端的通信
+      - sessionStorage 关闭就没有
+    - cookie最小 4KB
+        - localStorage 5M
+        - IndexDB  数据库 更大
+    - sessionStorage 表单业务  优化体验
+
+- 同源策略
+    - 沙箱，一种安全机制，用于隔离不受信任的代码
+    - 跨域

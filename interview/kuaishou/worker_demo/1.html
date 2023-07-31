@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebWorker Demo</title>
+</head>
+<body>
+    <h1>Web Worker Demo</h1>
+    <button id="start">Start Worker</button>
+    <h2>Result</h2>
+    <div class="result"></div>
+    <script>
+
+        const worker = new Worker('worker.js')
+        const resultDiv = document.getElementById('result')
+        const startBtn  = document.getElementById('start')
+        startBtn.addEventListener('click', () => {
+            worker.postMessage('hello')
+        })
+        worker.addEventListener('message', function (event) {
+            resultDiv.innerHTML = event.data
+        })
+    </script>
+</body>
+</html>

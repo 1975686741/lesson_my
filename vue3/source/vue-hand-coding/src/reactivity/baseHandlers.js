@@ -1,10 +1,16 @@
 import { tarck, trigger } from "./effect"
-
-// import { reactiveFlags } from './reactive'
+import { 
+    reactive, 
+    reactiveFlags, 
+    reactiveMap, 
+    shallowReactiveMap 
+    } from "./reactive"
+import { isObject } from "../shared"
 const get = createGetter()
 const set = createSetter()
 const has = () => {}
 const deleteProperty = () => {}
+const shallowReactiveGet = () => {}
 
 // shallow 浅
 function createGetter(shallow = false) {
@@ -12,10 +18,19 @@ function createGetter(shallow = false) {
         // 本职 返回普通对象的值
         // es6 提供的映射api
         // target[key]
-        // const isExistMap = () => key === reactiveFlags.RAW
+        // const isExistMap = () => key === reactiveFlags.RAW && (receiver === shallowReactiveMap.get(target)) 
+        // if (key === reactiveFlags.IS_REACTIVE) {
+        //     return true
+        // } else if(isExistMap()){
+        //     return target
+        // }
+        
         const res = Reflect.get(target, key, receiver)
         // console.log(receiver, res, '=-=');
         tarck(target, "get", key)   // 收集依赖
+        if (isObject(res)) {
+            return shallow? res : reactive(res) 
+        }
         return res 
     }
 }
@@ -26,9 +41,14 @@ function createSetter() {
         return result
     }
 }
-
 export const mutableHandlers = {
     get,
+    set,
+    has,
+    deleteProperty
+} 
+export const  shallowReactiveHandlers = {
+    get: shallowReactiveGet,
     set,
     has,
     deleteProperty

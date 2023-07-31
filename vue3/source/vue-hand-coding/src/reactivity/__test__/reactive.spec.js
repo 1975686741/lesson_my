@@ -1,5 +1,5 @@
 // const { reactive, effect } = require('@vue/reactivity')
-import { reactive } from '../reactive'
+import { reactive, shallowReactive } from '../reactive'
 import { effect } from '../effect'
 // jest 提供api 
 // vue 达成了 99.99% 用例测试的框架
@@ -48,6 +48,45 @@ describe('测试响应式', () => {
         ret.num++
         expect(val).toBe(1)
         expect(val2).toBe(1)
+    })
+    test('shalldowReactive基本使用', () => {
+        const ret  = shallowReactive({num: 0});
+        effect(() => {
+            val = ret.num
+        })
+        expect(val).toBe(0)
+        ret.num++
+        expect(val).toBe(1)
+    })
+    test('shallowReactive浅层响应式', () => {
+        const ret = shallowReactive({
+                name: '玩转vue3',
+                info: {
+                    price: 129,
+                    type: 'f2e'
+                }
+        })
+        let price
+        effect(() => {
+            price= ret.info.price
+        })
+        expect(price).toBe(129)
+    })
+    it('shallowReactive浅层响应式', () => {
+        const ret = shallowReactive({
+                name: '玩转vue3',
+                info: {
+                    price: 129,
+                    type: 'f2e'
+                }
+        })
+        let price
+        effect(() => {
+            price= ret.info.price
+        })
+        expect(price).toBe(129)
+        ret.info.price++
+        expect(price).toBe(130)
     })
 })
 

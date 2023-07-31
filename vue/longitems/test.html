@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="button">button</button>
+    <ul id="container">
+
+
+    </ul>
+
+    <script>
+        // 事件在移动端 最好不要用click 延迟 300ms 左右，用ontouchstart 代替 
+        // addEventListener false 和 true 的区别  
+        document.getElementById('button').addEventListener('click', function() {
+            let now = Date.now();
+            // 十万条数据
+            const total = 100000;
+            let ul = document.getElementById('container');
+            for (let i = 0; i < total; i++) {
+                let li = document.createElement('li')
+                li.innerText = Math.random() * total;
+                ul.appendChild(li)
+            }
+            // 浏览器渲染与浏览器级别一样 宏任务是一个栈 微任务是一个堆 超过刷帧时间
+            console.log('JS 运行事件', Date.now() - now)
+            setTimeout(() => {
+                console.log('总运行时间', Date.now() - now);
+            }, 0)
+        }, false)
+    </script>
+</body>
+</html>
