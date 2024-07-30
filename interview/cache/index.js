@@ -3,6 +3,11 @@ const fs = require('fs')
 const path = require('path')
 const { url } = require('inspector')
 const server =  http.createServer((req, res) => {
+    if (path.normalize(decodeURI(req.url)) !== decodeURI(req.url)) {
+        res.statusCode = 403;
+        res.end();
+        return;
+    }
     // console.log(req.url);
     if (req.url == '/') {
     //     // 首页html 
